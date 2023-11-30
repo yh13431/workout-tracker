@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import testimage from '../images/testimage.png'
 
 const Home = () => {
 
@@ -30,10 +29,10 @@ const Home = () => {
                 {routines.map(routine => (
                     <div className="routine" key={routine.id}>
                         <div className="img">
-                            <img src={testimage} alt="" />
+                            <img src={routine.img} alt="" />
                         </div>
                         <div className="content">
-                            <Link className="link" to={`/post/${routine.id}`}>
+                            <Link className="link" to={`/routine/${routine.id}`}>
                                 <h1>{routine.title}</h1>
                             </Link>
                             <p>{routine.desc}</p>

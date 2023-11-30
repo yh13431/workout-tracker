@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Single from './pages/Single'
 import Write from './pages/Write'
-import Post from './pages/Post'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "/post/:id",
-        element: <Post />
+        path: "/routine/:id",
+        element: <Single />
       },
       {
         path: "/write",
@@ -50,14 +50,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  {
-    path: "/write",
-    element: <Write />,
-  },
-  {
-    path: "/post",
-    element: <Post />,
-  },
+
 ]);
 
 function App() {
