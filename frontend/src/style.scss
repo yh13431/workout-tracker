@@ -1,0 +1,49 @@
+.app {
+
+    .container {
+
+        .auth{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: teal;
+            height: 100vh;
+            flex-direction: column;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: white;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                width:200px;
+                gap: 10px;
+                padding: 40px;
+                background-color: white;
+            }
+
+            input {
+                padding: 5px;
+                border: none;
+                border-bottom: 1px solid gray;
+            }
+
+            button {
+                padding: 5px;
+                background-color: black;
+                color:white;   
+            }
+
+            span {
+                color: black;
+                text-align: center;
+                margin-top: 4px;
+            }
+
+            p {
+                color: red;
+                text-align: center;
+                font-size: large;
+            }
+        }
+    }
+}
