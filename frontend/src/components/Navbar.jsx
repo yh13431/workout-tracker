@@ -9,10 +9,10 @@ const Navbar = () => {
                 <div className="logo">
                     <img src={logo} alt="logo" />
                 </div>
+                <div className="title">
+                    <h1>Workout Tracker</h1>
+                </div>
                 <div className="links">
-                    <Link className="link">
-                        <h6>My Routines</h6>
-                    </Link>
                     <span>User</span>
                     <span>Logout</span>
                     <span className="write">

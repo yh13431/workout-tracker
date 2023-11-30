@@ -1,9 +1,7 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
-  Outlet,
+  Outlet
 } from "react-router-dom";
 import Register from './pages/Register'
 import Login from './pages/Login'
