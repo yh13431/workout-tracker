@@ -5,6 +5,7 @@ import { CiEdit } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import Menu from "../components/Menu"
+import Exercise from "../components/Exercise";
 
 const Single = () => {
     return (
@@ -26,6 +27,7 @@ const Single = () => {
             </div>
             <h1>Title</h1>
             <p>Description</p>
+            <Exercise />
             </div>
             <Menu />
         </div>

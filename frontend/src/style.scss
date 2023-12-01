@@ -3,12 +3,11 @@
     justify-content: center;
     .container {
         width: 1024px;
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
         .link {
             text-decoration: none;
             color: inherit;
-
         }
 
 
@@ -83,7 +82,7 @@
 
                 .links{
                     display:flex;
-                    gap:50px;
+                    gap: 20px;
                     align-items: center;
 
                     h6{
@@ -231,6 +230,10 @@
                 font-size:50px;
             }
 
+            h2{
+                margin-top: 50px;
+            }
+
             p{
                 text-align: justify;
             }
@@ -276,10 +279,131 @@
                     }
                 }
             }
-
-            
         }
 
 
+        //exercises
+        .exercises {
+            margin-top:50px;
+            display: flex;
+            flex-direction: column;
+
+            .exercise {
+                display:flex;
+                gap: 50px;
+                margin:50px;
+    
+                .img{
+                    flex:2;
+                    position: relative;
+
+                    img {
+                        width:80%;
+                        object-fit: cover;
+                    }
+                }
+
+                .content {
+                    flex:3;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+            }
+        }
+            
+
+
+        // write
+        .add {
+            margin: 20px;
+            display:flex;
+            gap:10%;
+
+            .content{
+                flex:3;
+
+                input{
+                    padding:10px;
+                    border:1px solid darkcyan;
+                    display:block;
+                    margin: 40px 0px;
+                }
+
+                button {
+                    width:max-content;
+                    padding: 7.5px 15px;
+                    cursor:pointer;
+                    border:1px solid darkcyan;
+                    background-color: white;
+                    color:darkcyan;
+
+                    &:hover {
+                        color:white;
+                        background-color: darkcyan;
+                    }
+                }
+            }
+
+            .menu{
+                flex:2;
+                display:flex;
+                flex-direction: column;
+                gap:20px;
+
+                .item {
+                    border: 1px solid darkcyan;
+                    padding:10px;
+                    display:flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    font-size:12px;
+
+                    span{
+                        margin:10px;
+                    }
+
+                    h1 {
+                        font-size: 30px;
+                    }
+                    
+                    .file {
+                        text-decoration: underline;
+                        cursor:pointer;
+                        margin:10px;
+                    }
+
+                    .buttons {
+                        display:flex;
+                        justify-content: space-between;
+
+                        button {
+                                width:max-content;
+                                padding: 7.5px 15px;
+                                cursor:pointer;
+                                border:1px solid darkcyan;
+                                background-color: white;
+                                color:darkcyan;
+        
+                                &:hover {
+                                    color:white;
+                                    background-color: darkcyan;
+                                }
+                            }
+                        }
+
+                        .cat {
+                            display:flex;
+                            align-items: center;
+                            gap:2px;
+                            color:darkcyan;
+                            font-size:16px;
+                        }
+                    }
+                }
+            }
+
+
+            
+        }
     }
-}
