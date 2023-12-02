@@ -1,32 +1,57 @@
-import React from "react";
-import image2 from '../images/image2.png'
+import React, {useState, useEffect, useContext} from "react";
 import image3 from '../images/image3.png'
 import { CiEdit } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import Menu from "../components/Menu"
 import Exercise from "../components/Exercise";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import moment from "moment";
+import {AuthContext} from "../context/authContext"
 
 const Single = () => {
+
+    const [routine, setRoutine] = useState({})
+
+    // get user data from routine
+    const location = useLocation()
+
+    const routineId = location.pathname.split("/")[2]
+
+    const {currentUser} = useContext(AuthContext)
+
+    useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/routines/${routineId}`)
+                setRoutine(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        fetchData()
+    }, [routineId])
+
     return (
         <div className="single">
             <div className="content">
-                <img src={image2} alt="" />
+                <img src={routine?.img} alt="" />
             <div className="user">
                 <img src={image3} alt="" />
             <div className="info">
-                <span>User</span>
-                <p>Created 2 days ago</p>
+                <span>{routine.username}</span>
+                <p>Created {moment(routine.date).fromNow()}</p>
             </div>
-            <div className="edit">
-                <Link to={`/write?edit=2`}>
-                    <CiEdit />
-                </Link>
-                <CiTrash />
+                {currentUser.username === routine.username && (<div className="edit">
+                    <Link to={`/write?edit=2`}>
+                        <CiEdit />
+                    </Link>
+                        <CiTrash />
+                </div>)}
             </div>
-            </div>
-            <h1>Title</h1>
-            <p>Description</p>
+            <h1>{routine.title}</h1>
+                {routine.desc}
             <Exercise />
             </div>
             <Menu />

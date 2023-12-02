@@ -1,9 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
+    const [routines, setRoutines] = useState([])
 
-    const routines = [
+    // send routine to its category
+    const cat = useLocation().search
+
+    useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/routines${cat}`)
+                setRoutines(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        fetchData()
+    }, [cat])
+
+    /* const routines = [
         {
             id: 1,
             title: 'Title',
@@ -22,7 +39,7 @@ const Home = () => {
             desc: 'Desc',
             img: 'Img'
         },
-    ]
+    ] */
     return (
         <div className="home">
             <div className="routines">

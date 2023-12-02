@@ -11,7 +11,9 @@ const Navbar = () => {
         <div className="navbar">
             <div className="container">
                 <div className="logo">
+                    <Link to="/">
                     <img src={logo} alt="logo" />
+                    </Link>
                 </div>
                 <div className="title">
                     <h1>Workout Tracker</h1>
