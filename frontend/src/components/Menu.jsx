@@ -1,8 +1,23 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const Menu = () => {
+const Menu = ({cat}) => {
+    const [routines, setRoutines] = useState([])
 
-    const routines = [
+    useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/routines/?cat=${cat}`)
+                setRoutines(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        fetchData()
+    }, [cat])
+
+
+    /* const routines = [
         {
             id: 1,
             title: 'Title',
@@ -21,7 +36,8 @@ const Menu = () => {
             desc: 'Desc',
             img: 'Img'
         },
-    ]
+    ] */
+
     return (
         <div className="menu">
             <h1>Other Routines</h1>
