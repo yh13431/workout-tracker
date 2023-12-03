@@ -13,7 +13,7 @@ export const getRoutines = (req, res) => {
 
 export const getRoutine = (req, res) => {
     // get single routine from user
-    const q = "SELECT `username`, `title`, `desc`, r.img, u.img AS userImg, `cat`, `date` FROM users u JOIN routines r ON u.id = r.uid WHERE r.id = ?"
+    const q = "SELECT r.id, `username`, `title`, `desc`, r.img, u.img AS userImg, `cat`, `date` FROM users u JOIN routines r ON u.id = r.uid WHERE r.id = ?"
 
     db.query(q, [req.params.id], (err, data) => {
         if(err) return res.status(500).json(err)
@@ -24,7 +24,28 @@ export const getRoutine = (req, res) => {
 
 
 export const addRoutine = (req, res) => {
-    res.json("add routine")
+    const token = req.cookies.access_token
+    if (!token) return res.status(401).json("Not authenticated")
+
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is invalid")
+    
+        const q = "INSERT INTO routines(`title`, `desc`, `img`, `cat`, `date`, `uid`) VALUES (?)"
+
+        const values = [
+            req.body.title,
+            req.body.desc,
+            req.body.img,
+            req.body.cat,
+            req.body.date,
+            userInfo.id
+        ]
+
+        db.query(q, [values], (err, data) => {
+            if(err) return res.status(500).json(err)
+            return res.json("Post has been created")
+        })
+    })
 }
 
 
@@ -49,5 +70,26 @@ export const deleteRoutine = (req, res) => {
 
 
 export const updateRoutine = (req, res) => {
-    res.json("add routine")
+    const token = req.cookies.access_token
+    if (!token) return res.status(401).json("Not authenticated")
+
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is invalid")
+    
+        const routineId = req.params.id;
+
+        const q = "UPDATE routines SET `title`=?, `desc`=?, `img`=?, `cat`=? WHERE `id` = ? AND `uid`= ?"
+
+        const values = [
+            req.body.title,
+            req.body.desc,
+            req.body.img,
+            req.body.cat
+        ]
+
+        db.query(q, [...values, routineId, userInfo.id], (err, data) => {
+            if(err) return res.status(500).json(err)
+            return res.json("Post has been updated")
+        })
+    })
 }

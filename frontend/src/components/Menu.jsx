@@ -43,7 +43,7 @@ const Menu = ({cat}) => {
             <h1>Other Routines</h1>
             {routines.map(routine => (
                 <div className="routine" key={routine.id}>
-                    <img src={routine.img} alt="" />
+                    <img src={`../upload/${routine.img}`} alt="" />
                     <h2>{routine.title}</h2>
                     <button>View Routine</button>
                 </div>

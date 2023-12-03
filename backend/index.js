@@ -1,7 +1,6 @@
 import express from 'express';
 import routineRoutes from "./routes/routines.js"
 import authRoutes from "./routes/auth.js"
-import usersRoutes from "./routes/users.js"
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 
@@ -22,18 +21,17 @@ const storage = multer.diskStorage({
   })
   
 
-
-// routes
-app.use("/api/routines", routineRoutes)
-app.use("/api/auth", authRoutes)
-app.use("/api/users", usersRoutes)
-
 // upload route
 const upload = multer({ storage })
 app.post("/api/upload", upload.single('file'), function (req, res) {
     const file = req.file;
     res.status(200).json(file.filename)
 })
+
+
+// routes
+app.use("/api/routines", routineRoutes)
+app.use("/api/auth", authRoutes)
 
 app.listen(3001, () => {
     console.log("Server running on port 3001")

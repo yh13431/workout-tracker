@@ -46,7 +46,7 @@ const Single = () => {
     return (
         <div className="single">
             <div className="content">
-                <img src={routine?.img} alt="" />
+                <img src={`../upload/${routine.img}`} alt="" />
             <div className="user">
                 {routine.userImg && <img src={routine.userImg} alt="" />}
             <div className="info">
@@ -54,7 +54,7 @@ const Single = () => {
                 <p>Created {moment(routine.date).fromNow()}</p>
             </div>
                 {currentUser.username === routine.username && (<div className="edit">
-                    <Link to={`/write?edit=2`}>
+                    <Link to={`/write?edit=2`} state={routine}>
                         <CiEdit />
                     </Link>
                         <CiTrash onClick={handleDelete}/>

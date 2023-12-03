@@ -46,7 +46,7 @@ const Home = () => {
                 {routines.map(routine => (
                     <div className="routine" key={routine.id}>
                         <div className="img">
-                            <img src={routine.img} alt="" />
+                            <img src={`../upload/${routine.img}`} alt="" />
                         </div>
                         <div className="content">
                             <Link className="link" to={`/routine/${routine.id}`}>
