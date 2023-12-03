@@ -1,8 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
-import image3 from '../images/image3.png'
 import { CiEdit } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu"
 import Exercise from "../components/Exercise";
 import { useLocation } from "react-router-dom";
@@ -16,6 +15,7 @@ const Single = () => {
 
     // get user data from routine
     const location = useLocation()
+    const navigate = useNavigate()
 
     const routineId = location.pathname.split("/")[2]
 
@@ -33,12 +33,22 @@ const Single = () => {
         fetchData()
     }, [routineId])
 
+
+    const handleDelete = async() => {
+        try {
+            await axios.delete(`/routines/${routineId}`)
+            navigate("/")
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
     return (
         <div className="single">
             <div className="content">
                 <img src={routine?.img} alt="" />
             <div className="user">
-                <img src={image3} alt="" />
+                {routine.userImg && <img src={routine.userImg} alt="" />}
             <div className="info">
                 <span>{routine.username}</span>
                 <p>Created {moment(routine.date).fromNow()}</p>
@@ -47,7 +57,7 @@ const Single = () => {
                     <Link to={`/write?edit=2`}>
                         <CiEdit />
                     </Link>
-                        <CiTrash />
+                        <CiTrash onClick={handleDelete}/>
                 </div>)}
             </div>
             <h1>{routine.title}</h1>

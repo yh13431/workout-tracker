@@ -45,7 +45,7 @@ export const login = (req, res) => {
         if (!isPasswordCorrect) return res.status(400).json('Wrong username or password')
 
         // send user id to this hashed token, then store the token in the cookie
-        // compare this with the uid in the 'routines' db
+        // compare this with the uid in the 'routines' table
         const token = jwt.sign({id:data[0].id}, "jwtkey")
 
         // send all of the user's details except password 
