@@ -62,7 +62,7 @@ const Single = () => {
             </div>
             <h1>{routine.title}</h1>
                 {routine.desc}
-            <Exercise />
+            <Exercise rid={routine.id}/>
             </div>
             <Menu cat={routine.cat}/>
         </div>

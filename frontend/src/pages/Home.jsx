@@ -20,26 +20,7 @@ const Home = () => {
         fetchData()
     }, [cat])
 
-    /* const routines = [
-        {
-            id: 1,
-            title: 'Title',
-            desc: 'Desc',
-            img: 'Img'
-        },
-        {
-            id: 2,
-            title: 'Title',
-            desc: 'Desc',
-            img: 'Img'
-        },
-        {
-            id: 3,
-            title: 'Title',
-            desc: 'Desc',
-            img: 'Img'
-        },
-    ] */
+
     return (
         <div className="home">
             <div className="routines">
@@ -49,11 +30,11 @@ const Home = () => {
                             <img src={`../upload/${routine.img}`} alt="" />
                         </div>
                         <div className="content">
-                            <Link className="link" to={`/routine/${routine.id}`}>
-                                <h1>{routine.title}</h1>
-                            </Link>
+                            <h1>{routine.title}</h1>
                             <p>{routine.desc}</p>
-                            <button>View Routine</button>
+                            <button>
+                                <Link className="link" to={`/routine/${routine.id}`}><p>View Routine</p></Link>
+                            </button>
                         </div>
                     </div>
                 ))}

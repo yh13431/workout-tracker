@@ -3,10 +3,10 @@ import { addExercise, deleteExercise, getExercises, updateExercise } from '../co
 
 const router = express.Router()
 
-router.get("/routines/", getExercises)
-router.post("/routines/", addExercise)
-router.delete("/routines/:id", deleteExercise)
-router.put("/routines/:id", updateExercise)
+router.get("/", getExercises)
+router.post("/", addExercise)
+router.delete("/:id", deleteExercise)
+router.put("/:id", updateExercise)
 
 
 export default router;

@@ -33,7 +33,7 @@ app.post("/api/upload", upload.single('file'), function (req, res) {
 // routes
 app.use("/api/routines", routineRoutes)
 app.use("/api/auth", authRoutes)
-app.use("/api/routines/exercises", exerciseRoutes)
+app.use("/api/exercises", exerciseRoutes)
 
 app.listen(3001, () => {
     console.log("Server running on port 3001")

@@ -18,13 +18,14 @@ export const addExercise = (req, res) => {
     jwt.verify(token, "jwtkey", (err, routineInfo) => {
         if (err) return res.status(403).json("Token is invalid")
     
-        const q = "INSERT INTO exercises(`title`, `desc`, `sets`, `reps`, `completed`, `rid`) VALUES (?)"
+        const q = "INSERT INTO exercises(`etitle`, `edesc`, `sets`, `reps`, `eimg`, `completed`, `rid`) VALUES (?)"
 
         const values = [
-            req.body.title,
-            req.body.desc,
+            req.body.etitle,
+            req.body.edesc,
             req.body.sets,
             req.body.reps,
+            req.body.eimg,
             req.body.completed,
             routineInfo.id
         ]
@@ -66,13 +67,14 @@ export const updateExercise = (req, res) => {
     
         const exerciseId = req.params.id;
 
-        const q = "UPDATE exercises SET `title`=?, `desc`=?, `sets`=?, `reps`=?, `completed`=? WHERE `id` = ? AND `rid`= ?"
+        const q = "UPDATE exercises SET `etitle`=?, `edesc`=?, `sets`=?, `reps`=?, `eimg`=?, `completed`=? WHERE `id` = ? AND `rid`= ?"
 
         const values = [
-            req.body.title,
-            req.body.desc,
+            req.body.etitle,
+            req.body.edesc,
             req.body.sets,
             req.body.reps,
+            req.body.eimg,
             req.body.completed
         ]
 

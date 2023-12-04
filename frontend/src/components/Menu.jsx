@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Menu = ({cat}) => {
     const [routines, setRoutines] = useState([])
@@ -17,27 +18,6 @@ const Menu = ({cat}) => {
     }, [cat])
 
 
-    /* const routines = [
-        {
-            id: 1,
-            title: 'Title',
-            desc: 'Desc',
-            img: 'Img'
-        },
-        {
-            id: 2,
-            title: 'Title',
-            desc: 'Desc',
-            img: 'Img'
-        },
-        {
-            id: 3,
-            title: 'Title',
-            desc: 'Desc',
-            img: 'Img'
-        },
-    ] */
-
     return (
         <div className="menu">
             <h1>Other Routines</h1>
@@ -45,7 +25,9 @@ const Menu = ({cat}) => {
                 <div className="routine" key={routine.id}>
                     <img src={`../upload/${routine.img}`} alt="" />
                     <h2>{routine.title}</h2>
-                    <button>View Routine</button>
+                    <button>
+                        <Link className="link" to={`/routine/${routine.id}`}><p>View Routine</p></Link>
+                    </button>
                 </div>
             ))}
         </div>

@@ -1,41 +1,36 @@
-import React from "react";
-import image2 from "../images/image2.png"
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const Exercise = () => {
-    const exercises = [
-        {
-            id: 1,
-            title: 'Exercise 1',
-            img: 'Img',
-            sets: '1',
-            reps: '1',
-        },
-        {
-            id: 2,
-            title: 'Exercise 2',
-            img: 'Img',
-            sets: '2',
-            reps: '2',
-        },
-        {
-            id: 1,
-            title: 'Exercise 3',
-            img: 'Img',
-            sets: '3',
-            reps: '3',
+
+const Exercise = ({rid}) => {
+    const [exercises, setExercises] = useState([])
+
+    useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/exercises/?rid=${rid}`)
+                setExercises(res.data)
+            } catch(err) {
+                console.log(err)
+            }
         }
-    ]
+        fetchData()
+    }, [rid])
+
+
     return (
         <div className="exercises">
             {exercises.map(exercise => (
                 <div className="exercise" key={exercise.id}>
                     <div className="img">
-                        <img src={image2} alt="" />
+                        <img src={exercise.img} alt="" />
                     </div>
                     <div className="content">
-                        <div className="title">{exercise.title}</div>
-                        <div className="sets">Sets: {exercise.sets}</div>
-                        <div className="reps">Reps: {exercise.reps}</div>
+                        <h1>{exercise.title}</h1>
+                        Description: {exercise.desc}
+                        Sets: {exercise.sets}
+                        Reps: {exercise.reps}
+                        Completed: {exercise.completed}
                     </div>
                 </div>
             ))}
