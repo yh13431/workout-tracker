@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
+import AddExercise from "../components/AddExercise"
 
 const Write = () => {
 
@@ -11,6 +12,7 @@ const Write = () => {
     const [desc, setDesc] = useState(state?.desc || "")
     const [file, setFile] = useState(null)
     const [cat, setCat] = useState(state?.cat || "")
+
 
     const upload = async() => {
         try {
@@ -40,33 +42,28 @@ const Write = () => {
         }
     }
 
+
     return (
         <div className="add">
             <div className="content">
                 <h2>Add Routine</h2>
                 <input type="text" value={title} placeholder="Title" onChange={e => setTitle(e.target.value)}/>
                 <input type="text" value={desc} placeholder="Description" onChange={e => setDesc(e.target.value)}/>
-                <button>Add Exercise</button>
+                <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
+                <label className="file" htmlFor="file">Upload Image</label>
+            </div>
+            <div className="add">
+            <AddExercise />
             </div>
             <div className="menu">
                 <div className="item">
                     <h1>Publish</h1>
-                    <span>
-                        <b>Status: </b> Public
-                    </span>
-                    <span>
-                        <b>Visibility: </b> Draft
-                    </span>
-                    <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
-                    <label className="file" htmlFor="file">Upload Image</label>
                     <div className="buttons">
-                        <button>Save as Draft</button>
                         <button onClick={handleClick}>Publish</button>
                     </div>
                 </div>
                 <div className="item">
                     <h1>Category</h1>
-
                     <div className="cat">
                         <input type="checkbox" checked={cat === "shoulders"} name="cat" value="shoulders" id="shoulders" onChange={e => setCat(e.target.value)}/>
                         <label htmlFor="shoulders">Shoulders</label>

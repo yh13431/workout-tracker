@@ -321,8 +321,13 @@
             gap:10%;
 
             .content{
-                flex:3;
 
+                .file {
+                    text-decoration: underline;
+                    cursor:pointer;
+                    margin:10px;
+                }
+                
                 input{
                     padding:10px;
                     border:1px solid darkcyan;
@@ -345,8 +350,8 @@
                 }
             }
 
-            .menu{
-                flex:2;
+            .menu {
+                flex: 1;
                 display:flex;
                 flex-direction: column;
                 gap:20px;
@@ -354,9 +359,6 @@
                 .item {
                     border: 1px solid darkcyan;
                     padding:10px;
-                    display:flex;
-                    flex-direction: column;
-                    justify-content: space-between;
                     font-size:12px;
 
                     span{
@@ -365,12 +367,6 @@
 
                     h1 {
                         font-size: 30px;
-                    }
-                    
-                    .file {
-                        text-decoration: underline;
-                        cursor:pointer;
-                        margin:10px;
                     }
 
                     .buttons {
@@ -403,7 +399,21 @@
                 }
             }
 
+            .addexercise {
+                border: 1px solid darkcyan;
+                display: flex;
+                flex-direction: row;
+                padding: 10px;
+                gap: 10px;
 
+                .file {
+                    display: flex;
+                    text-decoration: underline;
+                }
+            }
+
+            
+            
             
         }
     }
