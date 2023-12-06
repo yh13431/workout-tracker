@@ -30,7 +30,6 @@ const Exercise = ({rid}) => {
                         Description: {exercise.desc}
                         Sets: {exercise.sets}
                         Reps: {exercise.reps}
-                        Completed: {exercise.completed}
                     </div>
                 </div>
             ))}

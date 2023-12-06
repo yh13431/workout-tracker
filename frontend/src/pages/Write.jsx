@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import moment from "moment";
-import AddExercise from "../components/AddExercise"
+
 
 const Write = () => {
 
     const navigate = useNavigate()
     const state = useLocation().state;
-    const [title, setTitle] = useState(state?.title || "")
-    const [desc, setDesc] = useState(state?.desc || "")
+    const [title, setTitle] = useState(state?.title)
+    const [desc, setDesc] = useState(state?.desc)
     const [file, setFile] = useState(null)
-    const [cat, setCat] = useState(state?.cat || "")
+    const [cat, setCat] = useState(state?.cat)
 
 
     const upload = async() => {
@@ -36,7 +36,7 @@ const Write = () => {
             await axios.post(`/routines/`, {
                 title, desc, cat, img: file ? imgUrl : "", data: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
             })
-            navigate("/")
+            navigate('/')
         }catch(err) {
             console.log(err)
         }
@@ -47,18 +47,21 @@ const Write = () => {
         <div className="add">
             <div className="content">
                 <h2>Add Routine</h2>
+                <h4> Fill up all fields before adding exercises</h4>
                 <input type="text" value={title} placeholder="Title" onChange={e => setTitle(e.target.value)}/>
                 <input type="text" value={desc} placeholder="Description" onChange={e => setDesc(e.target.value)}/>
                 <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
                 <label className="file" htmlFor="file">Upload Image</label>
             </div>
-            <div className="add">
-            <AddExercise />
-            </div>
             <div className="menu">
                 <div className="item">
-                    <h1>Publish</h1>
+                    <h1>Options</h1>
                     <div className="buttons">
+                        <button>
+                            <Link to="/writeExercise">
+                                Add Exercises
+                            </Link>
+                        </button>
                         <button onClick={handleClick}>Publish</button>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Single from './pages/Single'
 import Write from './pages/Write'
 import Home from './pages/Home'
+import WriteExercise from './pages/WriteExercise'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import './style.scss'
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/write",
         element: <Write />
+      },
+      {
+        path: "/writeexercise",
+        element: <WriteExercise />
       },
     ]
   },
