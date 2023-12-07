@@ -4,9 +4,9 @@ import { addExercise, deleteExercise, getExercises, updateExercise } from '../co
 const router = express.Router()
 
 router.get("/", getExercises)
-router.post("/", addExercise)
-router.delete("/:id", deleteExercise)
-router.put("/:id", updateExercise)
+router.post("/:routineId/exercises", addExercise)
+router.delete("/:routineId/exercises/:id", deleteExercise)
+router.put("/:routineId/exercises/:id", updateExercise)
 
 
 export default router;

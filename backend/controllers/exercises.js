@@ -12,13 +12,15 @@ export const getExercises = (req, res) => {
 }
 
 
-export const addExercise = (req, res) => {
+export const addExercise = async (req, res) => {
     const token = req.cookies.access_token
     if (!token) return res.status(401).json("Not authenticated")
 
     jwt.verify(token, "jwtkey", (err, routineInfo) => {
         if (err) return res.status(403).json("Token is invalid")
     
+        const routineId = req.params.routineId
+
         const q = "INSERT INTO exercises(`etitle`, `edesc`, `sets`, `reps`, `eimg`, `rid`) VALUES (?)"
 
         const values = [
@@ -27,7 +29,7 @@ export const addExercise = (req, res) => {
             req.body.sets,
             req.body.reps,
             req.body.eimg,
-            routineInfo.id
+            routineId
         ]
 
         db.query(q, [values], (err, data) => {
