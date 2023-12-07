@@ -11,18 +11,17 @@ const WriteExercise = ({ routineId, onExerciseCreated}) => {
     
     const handleCreateExercise = async() => {
       try {
-        const response = await fetch(`/routines/${routineId}/exercises`, {
+        const response = axios.post(`/routines/${routineId}/exercises`,
+        { etitle, edesc, sets, reps }, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ etitle, edesc, sets, reps }),
+
         });
 
-        if (response.ok) {
-          const data = await response.json();
-
-          onExerciseCreated(data.exercise);
+        if (response.status === 201) {
+          onExerciseCreated(response.data.exercise);
           setETitle('');
           setEDesc('');
           setSets('');
