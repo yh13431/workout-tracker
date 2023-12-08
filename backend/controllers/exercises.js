@@ -16,12 +16,10 @@ export const addExercise = async (req, res) => {
     const token = req.cookies.access_token
     if (!token) return res.status(401).json("Not authenticated")
 
-    jwt.verify(token, "jwtkey", (err, routineInfo) => {
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is invalid")
     
-        const routineId = req.params.routineId
-
-        const q = "INSERT INTO exercises(`etitle`, `edesc`, `sets`, `reps`, `eimg`, `rid`) VALUES (?)"
+        const q = "INSERT INTO exercises(`etitle`, `edesc`, `sets`, `reps`, `eimg`, `rid`, `userId`) VALUES (?)"
 
         const values = [
             req.body.etitle,
@@ -29,7 +27,8 @@ export const addExercise = async (req, res) => {
             req.body.sets,
             req.body.reps,
             req.body.eimg,
-            routineId
+            req.body.rid,
+            userInfo.id
         ]
 
         db.query(q, [values], (err, data) => {
@@ -45,43 +44,17 @@ export const deleteExercise = (req, res) => {
     const token = req.cookies.access_token
     if (!token) return res.status(401).json("Not authenticated")
 
-    jwt.verify(token, "jwtkey", (err, routineInfo) => {
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is invalid")
 
         const exerciseId = req.params.id
         // can only delete if 1. valid user, 2. correct routine
-        const q = "DELETE FROM exercises WHERE `id` = ? AND `rid` = ?"
+        const q = "DELETE FROM exercises WHERE `id` = ? AND `userId` = ?"
 
-        db.query(q, [exerciseId, routineInfo.id], (err, data) => {
-            if(err) return res.status(403).json("You can only delete your own exercises")
-            return res.json("Exercise has been deleted")
-        })
-    })
-}
-
-
-export const updateExercise = (req, res) => {
-    const token = req.cookies.access_token
-    if (!token) return res.status(401).json("Not authenticated")
-
-    jwt.verify(token, "jwtkey", (err, routineInfo) => {
-        if (err) return res.status(403).json("Token is invalid")
-    
-        const exerciseId = req.params.id;
-
-        const q = "UPDATE exercises SET `etitle`=?, `edesc`=?, `sets`=?, `reps`=?, `eimg`=?, WHERE `id` = ? AND `rid`= ?"
-
-        const values = [
-            req.body.etitle,
-            req.body.edesc,
-            req.body.sets,
-            req.body.reps,
-            req.body.eimg,
-        ]
-
-        db.query(q, [...values, exerciseId, routineInfo.id], (err, data) => {
+        db.query(q, [exerciseId, userInfo.id], (err, data) => {
             if(err) return res.status(500).json(err)
-            return res.json("Exercise has been updated")
+            if (data.affectedRows>0) return res.json("Exercise has been deleted")
+            return res.status(403).json("You can only delete your own exercises")
         })
     })
 }
