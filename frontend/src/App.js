@@ -1,25 +1,32 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet
+  Outlet,
 } from "react-router-dom";
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Single from './pages/Single'
 import Write from './pages/Write'
 import Home from './pages/Home'
-import WriteExercise from './pages/WriteExercise'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import './style.scss'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+ // problem: cannot log out (cannot read null username)
+// add protected route
+
+
+
+const queryClient = new QueryClient()
 
 const Dashboard = () => {
   return (
-    <>
+  <>
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+  </>
   )
 } 
 
@@ -27,7 +34,11 @@ const Dashboard = () => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: (
+      <QueryClientProvider client={queryClient}>
+        <Dashboard />
+      </QueryClientProvider>
+    ),
     children: [
       {
         path: "/",
@@ -40,10 +51,6 @@ const router = createBrowserRouter([
       {
         path: "/write",
         element: <Write />
-      },
-      {
-        path: "/writeexercise",
-        element: <WriteExercise />
       },
     ]
   },

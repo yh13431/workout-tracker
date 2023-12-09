@@ -12,20 +12,22 @@ export const getExercises = (req, res) => {
 }
 
 
-export const addExercise = async (req, res) => {
+export const addExercise = (req, res) => {
     const token = req.cookies.access_token
     if (!token) return res.status(401).json("Not authenticated")
 
     jwt.verify(token, "jwtkey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is invalid")
     
-        const q = "INSERT INTO exercises(`etitle`, `edesc`, `sets`, `reps`, `eimg`, `rid`, `userId`) VALUES (?)"
+        // check for valid user, correct user, correct routine
+        const q = "INSERT INTO exercises(`etitle`, `edesc`, `sets`, `reps`, `weight`, `eimg`, `rid`, `uid`) VALUES (?)"
 
         const values = [
             req.body.etitle,
             req.body.edesc,
             req.body.sets,
             req.body.reps,
+            req.body.weight,
             req.body.eimg,
             req.body.rid,
             userInfo.id
@@ -48,8 +50,8 @@ export const deleteExercise = (req, res) => {
         if (err) return res.status(403).json("Token is invalid")
 
         const exerciseId = req.params.id
-        // can only delete if 1. valid user, 2. correct routine
-        const q = "DELETE FROM exercises WHERE `id` = ? AND `userId` = ?"
+        // check for valid user, correct user, correct routine
+        const q = "DELETE FROM exercises WHERE `id` = ? AND `uid` = ? AND `rid` = ?"
 
         db.query(q, [exerciseId, userInfo.id], (err, data) => {
             if(err) return res.status(500).json(err)

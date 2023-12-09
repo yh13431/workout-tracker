@@ -58,9 +58,7 @@ const Write = () => {
                     <h1>Options</h1>
                     <div className="buttons">
                         <button>
-                            <Link to="/writeExercise">
                                 Add Exercises
-                            </Link>
                         </button>
                         <button onClick={handleClick}>Publish</button>
                     </div>

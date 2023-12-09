@@ -4,8 +4,8 @@ import { addExercise, deleteExercise, getExercises } from '../controllers/exerci
 const router = express.Router()
 
 router.get("/", getExercises)
-router.post("/:routineId/exercises", addExercise)
-router.delete("/:routineId/exercises/:id", deleteExercise)
+router.post("/", addExercise)
+router.delete("/:id", deleteExercise)
 
 
 export default router;
