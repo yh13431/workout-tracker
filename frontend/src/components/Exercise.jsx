@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {AuthContext} from "../context/authContext"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 
 
 const Exercise = ({rid}) => {
@@ -12,7 +13,6 @@ const Exercise = ({rid}) => {
     const [weight, setWeight] = useState("")
     const [eimg, setEImg] = useState(null)
 
-    const { currentUser } = useContext(AuthContext)
     const queryClient = useQueryClient()
 
     const makeRequest = axios.create({
@@ -52,7 +52,28 @@ const Exercise = ({rid}) => {
         setReps("")
         setWeight("")
         setEImg(null)
-    }
+        }
+
+    // hide add exercise button if incorrect user
+    const { currentUser } = useContext(AuthContext)
+    const [routine, setRoutine] = useState({})
+
+ 
+    const location = useLocation()
+    const routineId = location.pathname.split("/")[2]
+
+    useEffect(() => {
+        const fetchData = async() => {
+            try {
+                const res = await axios.get(`/routines/${routineId}`)
+                setRoutine(res.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        fetchData()
+    }, [routineId])
+
 
     return (
         <div className="exercises">
@@ -64,7 +85,7 @@ const Exercise = ({rid}) => {
                 <input type="number" value={weight} placeholder="Weight" min="0" onChange={e => setWeight(e.target.value)}/>
                 <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setEImg(e.target.files[0])}/>
                 <label className="file" htmlFor="file">Upload Image</label>
-                <button onClick={handleClick}>Add Exercise</button>
+                {currentUser.username === routine.username && <button onClick={handleClick}>Add Exercise</button>}
             </div>
             {error ? "Something went wrong" : isLoading ? "loading" : data.map((exercise) => (
                 <div className="exercise">
