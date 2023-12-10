@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import {AuthContext} from "../context/authContext"
 
 const Home = () => {
     const [routines, setRoutines] = useState([])
@@ -20,6 +21,7 @@ const Home = () => {
         fetchData()
     }, [cat])
 
+    const { currentUser } = useContext(AuthContext)
 
     return (
         <div className="home">
@@ -31,10 +33,15 @@ const Home = () => {
                         </div>
                         <div className="content">
                             <h1>{routine.title}</h1>
-                            <p>{routine.desc}</p>
-                            <button>
-                                <Link className="link" to={`/routine/${routine.id}`}><p>View Routine</p></Link>
-                            </button>
+                            {currentUser ? (
+                                <button>
+                                    <Link className="link" to={`/routine/${routine.id}`}><p>View Routine</p></Link>
+                                </button>
+                            ): (
+                                <button>
+                                    Log in to view routine
+                                </button>
+                            )}
                         </div>
                     </div>
                 ))}

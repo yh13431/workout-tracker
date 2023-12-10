@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 
@@ -34,7 +34,7 @@ const Write = () => {
                 title, desc, cat, img: file ? imgUrl : ""
             }) : 
             await axios.post(`/routines/`, {
-                title, desc, cat, img: file ? imgUrl : "", data: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+                title, desc, cat, img: file ? imgUrl : "", date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
             })
             navigate('/')
         }catch(err) {
@@ -47,7 +47,6 @@ const Write = () => {
         <div className="add">
             <div className="content">
                 <h2>Add Routine</h2>
-                <h4> Fill up all fields before adding exercises</h4>
                 <input type="text" value={title} placeholder="Title" onChange={e => setTitle(e.target.value)}/>
                 <input type="text" value={desc} placeholder="Description" onChange={e => setDesc(e.target.value)}/>
                 <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
@@ -57,9 +56,6 @@ const Write = () => {
                 <div className="item">
                     <h1>Options</h1>
                     <div className="buttons">
-                        <button>
-                                Add Exercises
-                        </button>
                         <button onClick={handleClick}>Publish</button>
                     </div>
                 </div>

@@ -13,10 +13,6 @@ import Footer from './components/Footer'
 import './style.scss'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
- // problem: cannot log out (cannot read null username)
-// add protected route
-
-
 
 const queryClient = new QueryClient()
 
@@ -62,7 +58,6 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-
 ]);
 
 function App() {
