@@ -31,7 +31,7 @@ const Exercise = ({rid}) => {
     });
 
     
-    const mutation = useMutation({
+    const addMutation = useMutation({
         mutationFn: (newExercise) => {
             return makeRequest.post("/exercises", newExercise)
         },
@@ -41,11 +41,25 @@ const Exercise = ({rid}) => {
         },
         
     })
+
+    
+    const deleteMutation = useMutation({
+        mutationFn: (exerciseId) => {
+          return makeRequest.delete(`/exercises/${exerciseId}`);
+        },
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['exercises'] });
+        },
+      });
+      
+      const handleDelete = async (exerciseId) => {
+        deleteMutation.mutate(exerciseId)
+      };
     
 
     const handleClick = async(e) => {
         e.preventDefault()
-        mutation.mutate({ etitle, edesc, sets, reps, weight, eimg, rid })
+        addMutation.mutate({ etitle, edesc, sets, reps, weight, eimg, rid })
         setETitle("")
         setEDesc(null)
         setSets("")
@@ -58,8 +72,7 @@ const Exercise = ({rid}) => {
     const { currentUser } = useContext(AuthContext)
     const [routine, setRoutine] = useState({})
 
- 
-    const location = useLocation()
+    const location = useLocation();
     const routineId = location.pathname.split("/")[2]
 
     useEffect(() => {
@@ -93,7 +106,7 @@ const Exercise = ({rid}) => {
                 </div>
                 )}
             {error ? "Something went wrong" : isLoading ? "loading" : data.map((exercise) => (
-                <div className="exercise">
+                <div className="exercise" key={exercise.id}>
                     <img src={"/upload/" + exercise.eimg} alt="" />
                     <div className="info">
                         <span>{exercise.etitle}</span>
@@ -101,6 +114,9 @@ const Exercise = ({rid}) => {
                         <p>Sets: {exercise.sets}</p>
                         <p>Reps: {exercise.reps}</p>
                         <p>Weight (kg): {exercise.weight}</p>
+                        <div key={exercise.id}>
+                            <button onClick={() => handleDelete(exercise.id)}>Delete Exercise</button>
+                        </div>
                     </div>
                 </div>
             ))}

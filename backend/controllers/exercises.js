@@ -51,7 +51,7 @@ export const deleteExercise = (req, res) => {
 
         const exerciseId = req.params.id
         // check for valid user, correct user, correct routine
-        const q = "DELETE FROM exercises WHERE `id` = ? AND `uid` = ? AND `rid` = ?"
+        const q = "DELETE FROM exercises WHERE `id` = ? AND `uid` = ?"
 
         db.query(q, [exerciseId, userInfo.id], (err, data) => {
             if(err) return res.status(500).json(err)
