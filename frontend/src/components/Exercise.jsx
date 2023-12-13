@@ -11,7 +11,7 @@ const Exercise = ({rid}) => {
     const [sets, setSets] = useState("")
     const [reps, setReps] = useState("")
     const [weight, setWeight] = useState("")
-    const [eimg, setEImg] = useState(null)
+    const [file, setFile] = useState(null)
 
     const queryClient = useQueryClient()
 
@@ -29,6 +29,17 @@ const Exercise = ({rid}) => {
                 return res.data
         })
     });
+
+    const upload = async() => {
+        try {
+            const formData = new FormData()
+            formData.append("file", file)
+            const res = await axios.post("/upload", formData)
+            return res.data
+        } catch(err) {
+            console.log(err)
+        }
+    }
 
     
     const addMutation = useMutation({
@@ -59,13 +70,14 @@ const Exercise = ({rid}) => {
 
     const handleClick = async(e) => {
         e.preventDefault()
-        addMutation.mutate({ etitle, edesc, sets, reps, weight, eimg, rid })
+        const imgUrl = await upload()
+        addMutation.mutate({ etitle, edesc, sets, reps, weight, eimg: file ? imgUrl : "", rid })
         setETitle("")
-        setEDesc(null)
+        setEDesc("")
         setSets("")
         setReps("")
         setWeight("")
-        setEImg(null)
+        setFile(null)
         }
 
     // hide add exercise button if incorrect user
@@ -98,7 +110,7 @@ const Exercise = ({rid}) => {
                     <input type="number" value={sets} placeholder="Sets" min="0" onChange={e => setSets(e.target.value)}/>
                     <input type="number" value={reps} placeholder="Reps" min="0" onChange={e => setReps(e.target.value)}/>
                     <input type="number" value={weight} placeholder="Weight" onChange={e => setWeight(e.target.value)}/>
-                    <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setEImg(e.target.files[0])}/>
+                    <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
                     <div className="upload">
                         <label className="file" htmlFor="file">Upload Image</label>
                         <button onClick={handleClick}>Add Exercise</button>
@@ -114,9 +126,11 @@ const Exercise = ({rid}) => {
                         <p>Sets: {exercise.sets}</p>
                         <p>Reps: {exercise.reps}</p>
                         <p>Weight (kg): {exercise.weight}</p>
-                        <div key={exercise.id}>
-                            <button onClick={() => handleDelete(exercise.id)}>Delete Exercise</button>
-                        </div>
+                        {currentUser.username === routine.username && (
+                            <div key={exercise.id}>
+                                <button onClick={() => handleDelete(exercise.id)}>Delete Exercise</button>
+                            </div>
+                        )}
                     </div>
                 </div>
             ))}
