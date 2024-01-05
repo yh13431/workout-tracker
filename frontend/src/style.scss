@@ -1,6 +1,8 @@
 .app {
     display: flex;
     justify-content: center;
+    margin: 0;
+    padding: 0;
     .container {
         width: 1024px;
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,46 +16,75 @@
         // login page
 
         .auth{
-            display: flex;
+            display:flex;
             align-items: center;
-            justify-content: center;
-            background-color: teal;
-            height: 100vh;
             flex-direction: column;
             color: white;
+            
+            .content {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            img {
+                width:60%;
+                height:auto;
+                background-color: white;
+            }
+
+            h1 {
+                font-size: 24px;
+                color: black;
+                text-align: center;
+            }
 
             form {
                 display: flex;
                 flex-direction: column;
-                width:200px;
-                gap: 10px;
-                padding: 40px;
-                background-color: white;
+                width:100%;
+                max-width:300px;
+                align-items: center;
+                margin-top: 20px;
             }
 
             input {
-                padding: 5px;
-                border: none;
-                border-bottom: 1px solid gray;
+                padding: 10px;
+                border: 1px solid gray;
+                margin-bottom:15px;
+                border-radius:5px;
+                width:100%;
             }
 
             button {
-                padding: 5px;
-                background-color: black;
-                color:white;   
+                padding: 10px;
+                background-color: darkcyan;
+                color:#fff;   
                 cursor: pointer;
+                border:none;
+                border-radius: 5px;
             }
 
             span {
-                color: black;
                 text-align: center;
-                margin-top: 4px;
+                margin-top: 15px;
+                color:black;
             }
 
             p {
                 color: red;
                 text-align: center;
-                font-size: large;
+                margin-top:10px;
+            }
+
+            a {
+                color: darkcyan;
+                text-decoration: none;
+                font-weight: bold;
+            }
+              
+            a:hover {
+                text-decoration: underline;
             }
         }
 
@@ -65,14 +96,16 @@
             .container {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
 
-                .title{
-                    margin: 20px;
+                .title {
                     width:300px;
-                    background-color: darkcyan;
+                    margin:20px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    font-size:16px;
+                    border-radius: 5%;
                 }
 
                 .logo{
@@ -85,8 +118,9 @@
                     display:flex;
                     gap: 20px;
                     align-items: center;
+                    position:relative;
 
-                    h6{
+                    h6 {
                         font-size: 16px;
                     }
 
@@ -95,34 +129,36 @@
                     }
 
                     .write {
-                        background-color: white;
-                        width:48px;
-                        height:48px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border:2px solid darkcyan;
-                        color: darkcyan;
-                        
-                        &:hover {
-                            color:white;
-                            background-color: darkcyan;
+                        button {
+                            background-color: white;
+                            width:48px;
+                            height:48px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border:2px solid darkcyan;
+                            color: darkcyan;
+                            
+                            &:hover {
+                                color:white;
+                                background-color: darkcyan;
+                            }
                         }
                     }
+                }
+                
 
-                    button {
-                        background-color: white;
-                        width:48px;
-                        height:48px;
-                        display: flex;
-                        justify-content: center;
+                @media (max-width: 768px) {
+                    .title,
+                    .links {
+                        margin-top: 0;
+                        flex-direction: column;
                         align-items: center;
-                        border:2px solid darkcyan;
-                        color: darkcyan;
-                        
-                        &:hover {
-                            color:white;
-                            background-color: darkcyan;
+                        text-align: center;
+
+                        .title {
+                            width: 100%;
+                            margin-bottom: 10px;
                         }
                     }
                 }

@@ -11,13 +11,16 @@ const Navbar = () => {
         <div className="navbar">
             <div className="container">
                 <div className="logo">
-                    <Link to="/">
                     <img src={logo} alt="logo" />
-                    </Link>
                 </div>
                 <div className="title">
-                    <h1>Workout Tracker</h1>
+                    <Link className="link" to="/">
+                        <h1>Workout Tracker</h1>
+                    </Link>
                 </div>
+                <span className="write">
+                    <Link className="link" to="/write">Write</Link>
+                </span>
                 <div className="links">
                     <Link className="link" to="/?cat=shoulders">
                         <h6>Shoulders</h6>
@@ -43,9 +46,6 @@ const Navbar = () => {
                     ) : (
                         <Link className="link" to="/login">Login</Link>
                     )}
-                    <span className="write">
-                        <Link className="link" to="/write">Write</Link>
-                    </span>
                 </div>
             </div>
         </div>

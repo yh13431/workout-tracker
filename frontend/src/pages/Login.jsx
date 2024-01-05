@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
+import logo from "../images/logo.png"
 
 const Login = () => {
 
@@ -33,14 +34,17 @@ const Login = () => {
     }
     return (
         <div className="auth">
-            <h1>Log In</h1>
-            <form>
-                <input required type="text" placeholder="Username" name="username" onChange={handleChange}/>
-                <input required type="password" placeholder="Password" name="password" onChange={handleChange}/>
-                <button onClick={handleSubmit}>Log In</button>
-                {err && <p>{err}</p>}
-                <span>No account? <Link to="/register">Register Here</Link></span>
-            </form>
+            <div className="content">
+                <img src={logo} alt="logo" />
+                <form>
+                    <h1>Log In</h1>
+                    <input required type="text" placeholder="Username" name="username" onChange={handleChange}/>
+                    <input required type="password" placeholder="Password" name="password" onChange={handleChange}/>
+                    <button onClick={handleSubmit}>Log In</button>
+                    {err && <p>{err}</p>}
+                    <span>No account? <Link to="/register">Register Here</Link></span>
+                </form>
+            </div>
         </div>
     )
 }
