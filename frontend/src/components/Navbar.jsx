@@ -10,41 +10,59 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="container">
-                <div className="logo">
-                    <img src={logo} alt="logo" />
+                <div className="header">
+                        <div className="logo">
+                            <img src={logo} alt="logo" />
+                        </div>
+                        <div className="title">
+                            <h1>Workout Tracker</h1>
+                        </div>
                 </div>
-                <div className="title">
-                    <Link className="link" to="/">
-                        <h1>Workout Tracker</h1>
-                    </Link>
+                <div className="username">
+                    <span>{currentUser?.username}</span>
                 </div>
                 <span className="write">
-                    <Link className="link" to="/write">Write</Link>
+                        {currentUser ? (
+                            <Link className="link" to="/write">Write</Link>
+                        ) : (
+                            <div></div>
+                        )}
                 </span>
+                <div className="home">
+                    <Link className="link" to="/">
+                        <span>Home</span>
+                    </Link>
+                </div>
                 <div className="links">
-                    <Link className="link" to="/?cat=shoulders">
-                        <h6>Shoulders</h6>
-                    </Link>
-                    <Link className="link" to="/?cat=arms">
-                        <h6>Arms</h6>
-                    </Link>
-                    <Link className="link" to="/?cat=abs">
-                        <h6>Abs</h6>
-                    </Link>
-                    <Link className="link" to="/?cat=chest">
-                        <h6>Chest</h6>
-                    </Link>
-                    <Link className="link" to="/?cat=back">
-                        <h6>Back</h6>
-                    </Link>
-                    <Link className="link" to="/?cat=legs">
-                        <h6>Legs</h6>
-                    </Link>
-                    <span>{currentUser?.username}</span>
+                    <div className="dropdown">
+                        <span className="link">Categories</span>
+                        <div className="dropdown-content">
+                            <Link className="link" to="/?cat=shoulders">
+                                <h6>Shoulders</h6>
+                            </Link>
+                            <Link className="link" to="/?cat=arms">
+                                <h6>Arms</h6>
+                            </Link>
+                            <Link className="link" to="/?cat=abs">
+                                <h6>Abs</h6>
+                            </Link>
+                            <Link className="link" to="/?cat=chest">
+                                <h6>Chest</h6>
+                            </Link>
+                            <Link className="link" to="/?cat=back">
+                                <h6>Back</h6>
+                            </Link>
+                            <Link className="link" to="/?cat=legs">
+                                <h6>Legs</h6>
+                            </Link>
+                        </div>
+                    </div>
                     {currentUser ? (
-                        <span onClick={logout}>Logout</span>
+                        <span onClick={logout}>Log Out</span>
                     ) : (
-                        <Link className="link" to="/login">Login</Link>
+                        <span>
+                            <Link className="link" to="/login">Log In</Link>
+                        </span>
                     )}
                 </div>
             </div>
