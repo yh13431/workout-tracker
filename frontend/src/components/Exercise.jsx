@@ -12,6 +12,7 @@ const Exercise = ({rid}) => {
     const [reps, setReps] = useState("")
     const [weight, setWeight] = useState("")
     const [file, setFile] = useState(null)
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
     const queryClient = useQueryClient()
 
@@ -78,6 +79,8 @@ const Exercise = ({rid}) => {
         setReps("")
         setWeight("")
         setFile(null)
+
+        setIsFormVisible(false)
         }
 
     // hide add exercise button if incorrect user
@@ -102,20 +105,25 @@ const Exercise = ({rid}) => {
 
     return (
         <div className="exercises">
-                {currentUser.username === routine.username && (
+            {currentUser.username === routine.username && (
                 <div className="write">
-                    <h2>Add Exercise</h2>
-                    <input type="text" placeholder="Name" value={etitle} onChange={e => setETitle(e.target.value)} />
-                    <input type="text" value={edesc} placeholder="Description" onChange={e => setEDesc(e.target.value)}/>
-                    <input type="number" value={sets} placeholder="Sets" min="0" onChange={e => setSets(e.target.value)}/>
-                    <input type="number" value={reps} placeholder="Reps" min="0" onChange={e => setReps(e.target.value)}/>
-                    <input type="number" value={weight} placeholder="Weight" onChange={e => setWeight(e.target.value)}/>
-                    <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
-                    <div className="upload">
-                        <label className="file" htmlFor="file">Upload Image</label>
-                        <button onClick={handleClick}>Add Exercise</button>
+                    <button onClick={() => setIsFormVisible(!isFormVisible)}>Add Exercise</button>
+                    {isFormVisible && (
+                        <div className="form">
+                            <h2>Add Exercise</h2>
+                            <input type="text" placeholder="Name" value={etitle} onChange={e => setETitle(e.target.value)} />
+                            <input type="text" value={edesc} placeholder="Description" onChange={e => setEDesc(e.target.value)}/>
+                            <input type="number" value={sets} placeholder="Sets" min="0" onChange={e => setSets(e.target.value)}/>
+                            <input type="number" value={reps} placeholder="Reps" min="0" onChange={e => setReps(e.target.value)}/>
+                            <input type="number" value={weight} placeholder="Weight" onChange={e => setWeight(e.target.value)}/>
+                            <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
+                            <div className="upload-add">
+                                <label className="file" htmlFor="file">Upload Image</label>
+                                <button onClick={handleClick}>Add to Routine</button>
+                            </div>
+                        </div>
+                        )}
                     </div>
-                </div>
                 )}
             {error ? "Something went wrong" : isLoading ? "loading" : data.map((exercise) => (
                 <div className="exercise" key={exercise.id}>

@@ -47,23 +47,25 @@ const Single = () => {
         <div className="single">
             <div className="content">
                 <img src={`../upload/${routine.img}`} alt="" />
-            <div className="user">
-                {routine.userImg && <img src={routine.userImg} alt="" />}
-            <div className="info">
-                <span>{routine.username}</span>
-                <p>Created {moment(routine.date).fromNow()}</p>
+                <div className="user">
+                    {routine.userImg && <img src={routine.userImg} alt="" />}
+                    <div className="info">
+                        <span>{routine.username}</span>
+                        <p>Created {moment(routine.date).fromNow()}</p>
+                    </div>
+                    {currentUser.username === routine.username && (
+                        <div className="edit">
+                            <Link to={`/write?edit=2`} state={routine}>
+                                <CiEdit />
+                            </Link>
+                            <CiTrash onClick={handleDelete}/>
+                        </div>
+                    )}
+                </div>
+                <h1>{routine.title}</h1>
+                <p>{routine.desc}</p>
             </div>
-                {currentUser.username === routine.username && (<div className="edit">
-                    <Link to={`/write?edit=2`} state={routine}>
-                        <CiEdit />
-                    </Link>
-                        <CiTrash onClick={handleDelete}/>
-                </div>)}
-            </div>
-            <h1>{routine.title}</h1>
-                {routine.desc}
-            <Exercise rid={routine.id}/>
-            </div>
+            <Exercise className="exercise" rid={routine.id}/>
             <Menu cat={routine.cat}/>
         </div>
     )
