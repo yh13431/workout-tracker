@@ -46,21 +46,18 @@ const Write = () => {
     return (
         <div className="add">
             <div className="content">
-                <h2>Add Routine</h2>
+                <h1>Add Routine</h1>
                 <input type="text" value={title} placeholder="Title" onChange={e => setTitle(e.target.value)}/>
                 <input type="text" value={desc} placeholder="Description" onChange={e => setDesc(e.target.value)}/>
                 <input style={{display:"none"}} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])}/>
                 <label className="file" htmlFor="file">Upload Image</label>
+                <div className="item">
+                    <button onClick={handleClick}>Publish</button>
+                </div>
             </div>
             <div className="menu">
                 <div className="item">
-                    <h1>Options</h1>
-                    <div className="buttons">
-                        <button onClick={handleClick}>Publish</button>
-                    </div>
-                </div>
-                <div className="item">
-                    <h1>Category</h1>
+                    <h1>Select a Category</h1>
                     <div className="cat">
                         <input type="checkbox" checked={cat === "shoulders"} name="cat" value="shoulders" id="shoulders" onChange={e => setCat(e.target.value)}/>
                         <label htmlFor="shoulders">Shoulders</label>
@@ -72,8 +69,8 @@ const Write = () => {
                     </div>
                     
                     <div className="cat">
-                        <input type="checkbox" checked={cat === "abs"}  name="cat" value="abs" id="abs" onChange={e => setCat(e.target.value)}/>
-                        <label htmlFor="abs">Abs</label>
+                        <input type="checkbox" checked={cat === "core"}  name="cat" value="core" id="core" onChange={e => setCat(e.target.value)}/>
+                        <label htmlFor="core">Core</label>
                     </div>
 
                     <div className="cat">

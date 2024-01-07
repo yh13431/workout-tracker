@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from "../context/authContext"
+import Hero from "../components/Hero";
 
 const Home = () => {
     const [routines, setRoutines] = useState([])
@@ -25,6 +26,7 @@ const Home = () => {
 
     return (
         <div className="home">
+            <Hero />
             <div className="routines">
                 {routines.map(routine => (
                     <div className="routine" key={routine.id}>
