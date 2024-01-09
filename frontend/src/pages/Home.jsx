@@ -41,7 +41,7 @@ const Home = () => {
                                 </button>
                             ): (
                                 <button>
-                                    Log in to view routine
+                                    <p>Log In to View Routine</p>
                                 </button>
                             )}
                         </div>
