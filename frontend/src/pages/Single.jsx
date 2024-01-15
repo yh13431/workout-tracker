@@ -46,26 +46,27 @@ const Single = () => {
     return (
         <div className="single">
             <div className="content">
+                <h1>{routine.title}</h1>
+                {routine.desc}
                 <img src={`../upload/${routine.img}`} alt="" />
                 <div className="user">
                     {routine.userImg && <img src={routine.userImg} alt="" />}
                     <div className="info">
-                        <span>{routine.username}</span>
+                        <span className="username">{routine.username}</span>
                         <p>Created {moment(routine.date).fromNow()}</p>
+                        {currentUser.username === routine.username && (
+                            <div className="edit">
+                                <Link to={`/write?edit=2`} state={routine}>
+                                    <CiEdit />
+                                </Link>
+                                <CiTrash onClick={handleDelete}/>
+                            </div>
+                        )}
                     </div>
-                    {currentUser.username === routine.username && (
-                        <div className="edit">
-                            <Link to={`/write?edit=2`} state={routine}>
-                                <CiEdit />
-                            </Link>
-                            <CiTrash onClick={handleDelete}/>
-                        </div>
-                    )}
                 </div>
-                <h1>{routine.title}</h1>
-                <p>{routine.desc}</p>
+                <Exercise className="exercise" rid={routine.id}/>
             </div>
-            <Exercise className="exercise" rid={routine.id}/>
+            <h2>View Other Routines</h2>
             <Menu cat={routine.cat}/>
         </div>
     )

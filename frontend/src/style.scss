@@ -1,6 +1,5 @@
 body {
-    margin: 0;
-    padding-top:160px;
+    margin:160px 0px;
 }
 
 .app {
@@ -64,12 +63,20 @@ body {
             }
 
             button {
-                padding: 10px;
-                background-color: darkcyan;
-                color:#fff;   
-                cursor: pointer;
-                border:none;
-                border-radius: 5px;
+                padding: 15px; 
+                        border: 1px solid darkcyan;
+                        margin-bottom: 16px;
+                        border-radius: 5px;
+                        width: 100%;
+                        font-size: 1em;
+                        cursor:pointer;
+                        box-sizing: border-box;
+                        background-color: white;
+                    
+                        &:hover {
+                            background-color: darkcyan;
+                            color: #fff;
+                        }
             }
 
             span {
@@ -100,13 +107,15 @@ body {
             position: fixed;
             top: 0;
             left: 0;
+            height:100px;
             width: 100%;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9);
             z-index: 100;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-around;
             align-items: center;
+            transition: background-color 0.3s ease;
 
             .container {
                 display: flex;
@@ -233,22 +242,6 @@ body {
                         }
                     }
                 }
-                
-
-                @media (max-width: 768px) {
-                    .title,
-                    .links {
-                        margin-top: 0;
-                        flex-direction: column;
-                        align-items: center;
-                        text-align: center;
-
-                        .title {
-                            width: 100%;
-                            margin-bottom: 10px;
-                        }
-                    }
-                }
             }
         }
 
@@ -272,7 +265,7 @@ body {
         .hero {
             background-image: url('./images/hero.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             height: 60vh;
             width: 100%;
             display: flex;
@@ -321,262 +314,318 @@ body {
         // homepage
         .home {
             .routines {
-                margin-top:100px;
-                display: grid;
-                flex-direction: column;
-                gap:150px;
-                align-items: center;
+                margin-top:20px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
 
                 .routine {
                     display:flex;
-                    gap: 80px;
-                    max-width: 800px;
-                    width: 100%;
-                }
-
-                .img {
-                    flex:2;
+                    flex-direction: column;
+                    margin: 10px;
+                    overflow:hidden;
                     position: relative;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    height:400px;
+                    width:400px;
+                    transition: transform 0.3s ease;
 
-                    &::after{
-                        content:"";
-                        width:100%;
-                        height:100%;
-                        background-color: darkcyan;
+                    &:hover {
+                        transform: scale(1.03);
+                    }
+
+                    .overlay {
                         position: absolute;
                         top: 0;
-                        left:0;
-                        z-index:-1;
-                        border-radius:5px;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0, 0, 0, 0.5);
+                        border-radius: 8px;
+                        z-index: 1;
                     }
-
-                    img {
-                        width:100%;
-                        object-fit: cover;
-                        object-position: center;
-                    }
-                }
-
-                .content {
-                    flex:3;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-
-                    h1{
-                        font-size: 40px;
-                        align-self: center;
-                    }
-
-                    p{
-                        font-size: 20px;
-                    }
-
-                    button{
-                        display: inline-block;
-                        padding:10px 20px;
-                        background-color: darkcyan;
-                        color: #fff;
-                        font-size: 1.2em;
-                        border-radius: 5px;
-                        transition: background-color 0.3s ease;
-                        cursor:pointer;
-                    
-                        &:hover {
-                            background-color: teal; 
+    
+                    .content {
+                        position: absolute; 
+                        bottom: 0; 
+                        left: 0; 
+                        z-index: 2;
+                        padding: 15px;
+    
+                        h1{
+                            font-size: 2rem;
+                            margin: 30px;
+                            color:black;
                         }
                     }
 
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
                 }
             }
         }
 
 
-        // single
-        
+        // single   
         .single {
-            display:flex;
-            gap:50px;
+            display: grid;
+            justify-content: center;
 
             .content {
-                flex:2;
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                align-items: center;
+                justify-content: center;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
 
-                img{
-                    width: 10vw;
-                    height:20vh;
-                    object-fit: cover;
+                h1 {
+                    font-size: 50px;
                 }
+
+                p {
+                    font-size: 20px;
+                }
+            }
 
             .user {
                 display:flex;
                 align-items: center;
-                gap:10px;
+                gap: 10px;
 
-                img{
+                img {
                     width: 50px;
                     height: 50px;
                     border-radius: 50%;
                     object-fit: cover;
                 }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    .username {
+                        font-size:30px;
+                    }
+                }
             }
 
-            .edit {
-                display:flex;
-                gap:10px;
-                margin:20px;
-            }
-
-            h1{
-                font-size:50px;
-            }
-
-            p {
-                text-align: justify;
-            }
-
-            }
-
-            .exercise {
-                flex: 2;
-                margin: 20px;
-            }
-
-            .menu {
-                flex:1;
-                display:block;
-                flex-direction: column;
-                gap:25px;
-                align-items: center;
-                justify-content: center;
-
-                h1 {
-                    font-size: 24px;
+                .edit {
+                    font-size:30px;
+                    margin-bottom:20px;
                 }
 
-                .routine {
-                    flex:1;
-                    display:flex;
+                .routine-info {
+                    flex: 1;
+                    display: flex;
                     flex-direction: column;
-                    gap:10px;
-
-                    img {
-                        width:100%;
-                        height: 200px;
-                        object-fit: cover;
-                    }
-
-                    h2 {
-                        text-align: center;
-                    }
-
-                    button{
-                        display: inline-block;
-                        padding: 10px;
-                        background-color: darkcyan;
-                        color: #fff;
-                        font-size: 1.2em;
+                    gap: 10px;
+        
+                    .add-exercise-button {
+                        button {
+                            padding: 15px; 
+                        border: 1px solid darkcyan;
+                        margin-bottom: 16px;
                         border-radius: 5px;
-                        transition: background-color 0.3s ease;
+                        width: 100%;
+                        font-size: 1em;
                         cursor:pointer;
-                        align-self: center;
+                        box-sizing: border-box;
+                        background-color: white;
                     
                         &:hover {
-                            background-color: teal; 
+                            background-color: darkcyan;
+                            color: #fff;
+                        }
                         }
                     }
                 }
+
+            .exercise {
+                flex: 2;
             }
+
+            .menu {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            
+                h1 {
+                  font-size: 24px;
+                }
+            
+                .routine {
+                    display:flex;
+                    flex-direction: column;
+                    margin: 30px;
+                    overflow:hidden;
+                    position: relative;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    height:400px;
+                    width:400px;
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.03);
+                    }
+
+                    .overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0, 0, 0, 0.5);
+                        border-radius: 8px;
+                        z-index: 1;
+                    }
+    
+                    .content {
+                        position: absolute; 
+                        bottom: 0; 
+                        left: 0; 
+                        z-index: 2;
+                        padding: 15px;
+    
+                        h1{
+                            font-size: 2rem;
+                            margin: 20px;
+                            color:white
+                        }
+                    }
+            
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                }
+              }
         }
 
 
         //exercises
         .exercises {
-            margin-top:20px;
-            display:inline-block;
+            display:grid;
+            justify-content: center;
             align-items: center;
+            gap:50px;
 
             .write {
-                display:block;
+                display:flex;
+                justify-content: center;
+                align-items: center;
 
-                h2 {
-                    margin:20px;
-                }
-                
-               input, label, button {
-                    padding: 15px 30px; 
+                label, button{
+                    padding: 10px; 
                     border: 1px solid darkcyan;
-                    margin: 24px;
+                    margin-bottom: 16px;
                     border-radius: 5px;
-                    width: 60%;
+                    width: 100%;
                     font-size: 1.2em;
                     cursor:pointer;
-                }
-
-                button{
-                    display: inline-block;
-                    padding: 10px;
-                    background-color: darkcyan;
-                    color: #fff;
-                    font-size: 1.2em;
-                    border-radius: 5px;
-                    transition: background-color 0.3s ease;
+                    box-sizing: border-box;
+                    background-color: white;
                 
                     &:hover {
-                        background-color: teal; 
+                        background-color: darkcyan;
+                        color: #fff;
                     }
                 }
 
                 
                 .form {
-                    position: absolute;
-                    top: 300px;
-                    left: 600px;
-                    width: 30%;
-                    background-color: #fff;
-                    padding: 20px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                    z-index: 1000;
-                  }
-
-                  .upload-add {
-                    margin:30px 0;
-                    display: flex;
-                  }
-                }
-              
-
-            .exercise {
-                display:flex;
-                gap: 50px;
-                margin:40px;
-
-                img {
-                    width:20vw;
-                    height:40vh;
+                    display:block;
                 }
 
-                span {
-                    font-size:30px;
-                }
-
-                p {
-                    font-size:18px;
-                }
-
-                button{
-                    display: inline-block;
-                    padding: 10px;
-                    background-color: darkcyan;
-                    color: #fff;
-                    font-size: 1.2em;
+                input, label {
+                    padding: 15px; 
+                    border: 1px solid darkcyan;
+                    margin-bottom: 16px;
                     border-radius: 5px;
-                    transition: background-color 0.3s ease;
-                
-                    &:hover {
-                        background-color: teal; 
+                    width: 100%;
+                    font-size: 1em;
+                    cursor:pointer;
+                    box-sizing: border-box;
+                }
+
+                .upload-add {
+                    display:grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 16px;
+
+                    .file, .button {
+                        display: flex;
+                        flex-direction: column; 
+                        align-items: center;
+                        gap: 20px;
+                    }
+                }
+            }
+
+            .listexercises {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center; 
+                margin: 0 auto;
+                gap:50px;
+
+                .exercise {
+                    flex: 1 0 calc(30% - 20px); 
+                    box-sizing: border-box;
+
+                    img {
+                        width:100%;
+                        height:200px;
+                        object-fit: cover;
+                        border-radius: 8px;
+                    }
+    
+                    span {
+                        font-size:40px;
+                    }
+    
+                    p {
+                        font-size:18px;
+                    }
+    
+                    button{
+                        padding: 15px; 
+                        border: 1px solid darkcyan;
+                        margin-bottom: 16px;
+                        border-radius: 5px;
+                        width: 100%;
+                        font-size: 1em;
+                        cursor:pointer;
+                        box-sizing: border-box;
+                        background-color: white;
+                    
+                        &:hover {
+                            background-color: darkcyan;
+                            color: #fff;
+                        }
+                    }
+                    
+                    .delete {
+                        display:grid;
+                        align-items: center;
+                        justify-content: center;
+                        margin:20px 0px;
+                    }
+
+                    .info {
+                        display:grid;
+                        align-items: center;
+                        justify-content: center;
                     }
                 }
             }
@@ -620,17 +669,20 @@ body {
                 }
 
                 button {
-                    display: inline-block;
-                    padding: 15px 30px;
-                    background-color: darkcyan;
-                    color: #fff;
-                    font-size: 1.2em;
-                    border-radius: 5px;
-                    transition: background-color 0.3s ease;                        cursor:pointer;
+                    padding: 15px; 
+                        border: 1px solid darkcyan;
+                        margin-bottom: 16px;
+                        border-radius: 5px;
+                        width: 100%;
+                        font-size: 1em;
+                        cursor:pointer;
+                        box-sizing: border-box;
+                        background-color: white;
                     
-                    &:hover {
-                        background-color: teal; 
-                    }
+                        &:hover {
+                            background-color: darkcyan;
+                            color: #fff;
+                        }
                 }
             }
 

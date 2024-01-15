@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -7,7 +6,6 @@ const Hero = () => {
       <div className="hero-content">
         <h1>Workout Tracker</h1>
         <p>Start tracking your workouts today!</p>
-        <Link className="hero-link" to="/login">Get Started</Link>
       </div>
     </div>
   );

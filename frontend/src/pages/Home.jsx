@@ -20,31 +20,28 @@ const Home = () => {
             }
         }
         fetchData()
-    }, [cat])
-
+    }, [cat])    
     const { currentUser } = useContext(AuthContext)
+
 
     return (
         <div className="home">
             <Hero />
             <div className="routines">
                 {routines.map(routine => (
-                    <div className="routine" key={routine.id}>
-                        <div className="img">
-                            <img src={`../upload/${routine.img}`} alt="" />
-                        </div>
-                        <div className="content">
-                            <h1>{routine.title}</h1>
-                            {currentUser ? (
-                                <button>
-                                    <Link className="link" to={`/routine/${routine.id}`}><p>View Routine</p></Link>
-                                </button>
-                            ): (
-                                <button>
-                                    <p>Log In to View Routine</p>
-                                </button>
-                            )}
-                        </div>
+                    <div className="routine" key={routine.id} style={{ backgroundImage: `url(../upload/${routine.img})` }}>
+                        {currentUser ? (
+                            <Link className="link" to={`/routine/${routine.id}`}>
+                                <div className="overlay" />
+                                <div className="content">
+                                    <h1>{routine.title}</h1>
+                                </div>
+                            </Link>
+                        ) : (
+                            <div className="content">
+                                <h1>Log In to View Routine</h1>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

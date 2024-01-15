@@ -105,10 +105,27 @@ const Exercise = ({rid}) => {
 
     return (
         <div className="exercises">
+            <div className="listexercises">
+                {error ? "Something went wrong" : isLoading ? "loading" : data.map((exercise) => (
+                <div className="exercise" key={exercise.id}>
+                    <img src={"/upload/" + exercise.eimg} alt="" />
+                    {currentUser.username === routine.username && (
+                        <div className="delete" key={exercise.id}>
+                            <button onClick={() => handleDelete(exercise.id)}>Delete</button>
+                        </div>
+                    )}
+                    <div className="info">
+                        <span>{exercise.etitle}</span>
+                        <p>{exercise.edesc}</p>
+                        <p>Sets: {exercise.sets}</p>
+                        <p>Reps: {exercise.reps}</p>
+                        <p>Weight (kg): {exercise.weight}</p>
+                    </div>
+                </div>
+            ))}
+            </div>
             {currentUser.username === routine.username && (
                 <div className="write">
-                    <button onClick={() => setIsFormVisible(!isFormVisible)}>Add Exercise</button>
-                    {isFormVisible && (
                         <div className="form">
                             <h2>Add Exercise</h2>
                             <input type="text" placeholder="Name" value={etitle} onChange={e => setETitle(e.target.value)} />
@@ -122,26 +139,8 @@ const Exercise = ({rid}) => {
                                 <button onClick={handleClick}>Add to Routine</button>
                             </div>
                         </div>
-                        )}
                     </div>
                 )}
-            {error ? "Something went wrong" : isLoading ? "loading" : data.map((exercise) => (
-                <div className="exercise" key={exercise.id}>
-                    <img src={"/upload/" + exercise.eimg} alt="" />
-                    <div className="info">
-                        <span>{exercise.etitle}</span>
-                        <p>{exercise.edesc}</p>
-                        <p>Sets: {exercise.sets}</p>
-                        <p>Reps: {exercise.reps}</p>
-                        <p>Weight (kg): {exercise.weight}</p>
-                        {currentUser.username === routine.username && (
-                            <div key={exercise.id}>
-                                <button onClick={() => handleDelete(exercise.id)}>Delete Exercise</button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            ))}
         </div>
     )
 }
