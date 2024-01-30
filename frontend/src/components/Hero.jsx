@@ -4,8 +4,7 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="hero-content">
-        <h1>Workout Tracker</h1>
-        <p>Start tracking your workouts today!</p>
+        <div className='title'>Workout Tracker</div>
       </div>
     </div>
   );

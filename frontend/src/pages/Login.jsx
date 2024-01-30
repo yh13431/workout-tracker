@@ -32,10 +32,10 @@ const Login = () => {
             setError(err.response.data)
         }
     }
+
     return (
         <div className="auth">
             <div className="content">
-                <img src={logo} alt="logo" />
                 <form>
                     <h1>Log In</h1>
                     <input required type="text" placeholder="Username" name="username" onChange={handleChange}/>
@@ -44,6 +44,7 @@ const Login = () => {
                     {err && <p>{err}</p>}
                     <span>No account? <Link to="/register">Register Here</Link></span>
                 </form>
+                <img src={logo} alt="logo" />
             </div>
         </div>
     )

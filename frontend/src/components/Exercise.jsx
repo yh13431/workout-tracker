@@ -115,7 +115,7 @@ const Exercise = ({rid}) => {
                         </div>
                     )}
                     <div className="info">
-                        <span>{exercise.etitle}</span>
+                        <p>{exercise.etitle}</p>
                         <p>{exercise.edesc}</p>
                         <p>Sets: {exercise.sets}</p>
                         <p>Reps: {exercise.reps}</p>
@@ -127,7 +127,7 @@ const Exercise = ({rid}) => {
             {currentUser.username === routine.username && (
                 <div className="write">
                         <div className="form">
-                            <h2>Add Exercise</h2>
+                            <h1>Add Exercise</h1>
                             <input type="text" placeholder="Name" value={etitle} onChange={e => setETitle(e.target.value)} />
                             <input type="text" value={edesc} placeholder="Description" onChange={e => setEDesc(e.target.value)}/>
                             <input type="number" value={sets} placeholder="Sets" min="0" onChange={e => setSets(e.target.value)}/>

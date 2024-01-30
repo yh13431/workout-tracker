@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from "../context/authContext"
 import Hero from "../components/Hero";
+import Description from "../components/Description";
+
 
 const Home = () => {
     const [routines, setRoutines] = useState([])
@@ -27,21 +29,28 @@ const Home = () => {
     return (
         <div className="home">
             <Hero />
+            <Description />
+            <h1>View Routines</h1>
             <div className="routines">
                 {routines.map(routine => (
-                    <div className="routine" key={routine.id} style={{ backgroundImage: `url(../upload/${routine.img})` }}>
-                        {currentUser ? (
-                            <Link className="link" to={`/routine/${routine.id}`}>
-                                <div className="overlay" />
-                                <div className="content">
-                                    <h1>{routine.title}</h1>
+                    <div className="routine-card" key={routine.id}>
+                        <div className="routine">
+                            {currentUser ? (
+                                <Link className="link" to={`/routine/${routine.id}`}>
+                                    <img src={`../upload/${routine.img}` }  alt={routine.title} />
+                                    <div className="card-content">
+                                        <h2>{routine.title}</h2>
+                                    </div>
+                                </Link>
+                            ) : (
+                                <div className="logincard">
+                                    <img src={`../upload/${routine.img}`} alt={routine.title} />
+                                    <div className="card-content">
+                                        Login To View
+                                    </div>
                                 </div>
-                            </Link>
-                        ) : (
-                            <div className="content">
-                                <h1>Log In to View Routine</h1>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 ))}
             </div>

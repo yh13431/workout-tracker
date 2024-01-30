@@ -43,7 +43,7 @@ const Register = () => {
                     {err && <p>{err}</p>}
                     <span>Have an account? <Link to="/login">Log In</Link></span>
                 </form>
-        </div>
+            </div>
         </div>
     )
 }
