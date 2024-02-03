@@ -2,6 +2,7 @@ import express from 'express';
 import routineRoutes from "./routes/routines.js"
 import authRoutes from "./routes/auth.js"
 import exerciseRoutes from "./routes/exercises.js"
+import setRoutes from "./routes/sets.js"
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 import cors from "cors";
@@ -44,6 +45,7 @@ app.post("/api/upload", upload.single('file'), function (req, res) {
 app.use("/api/routines", routineRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/api/exercises", exerciseRoutes)
+app.use("/api/sets", setRoutes)
 
 app.listen(3001, () => {
     console.log("Server running on port 3001")

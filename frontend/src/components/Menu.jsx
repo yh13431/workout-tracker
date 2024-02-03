@@ -21,14 +21,16 @@ const Menu = ({cat}) => {
     return (
         <div className="menu">
             {routines.map(routine => (
+                <>
+                <Link className="link" to={`/routine/${routine.id}`}>
                 <div className="routine" key={routine.id} style={{ backgroundImage: `url(../upload/${routine.img})` }}>
-                    <Link className="link" to={`/routine/${routine.id}`}>
                     <div className="overlay" />
                     <div className="content">
                                     <h1>{routine.title}</h1>
                             </div>
-                    </Link>
                 </div>
+                </Link>
+                </>
             ))}
         </div>
     )

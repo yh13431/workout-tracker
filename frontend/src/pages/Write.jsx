@@ -3,7 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import write from '../images/write.jpg';
-import Hero from '../components/Hero';
+
 
 const Write = () => {
 

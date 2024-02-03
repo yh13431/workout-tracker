@@ -47,8 +47,8 @@ const Single = () => {
         <div className="single">
             <div className="content">
                 <h1>{routine.title}</h1>
-                {routine.desc}
                 <img src={`../upload/${routine.img}`} alt="" />
+                <h3>{routine.desc}</h3>
                 <div className="user">
                     {routine.userImg && <img src={routine.userImg} alt="" />}
                     <div className="info">
@@ -64,8 +64,8 @@ const Single = () => {
                         )}
                     </div>
                 </div>
-                <Exercise className="exercise" rid={routine.id}/>
             </div>
+            <Exercise className="exercise" rid={routine.id}/>
             <h2>View Other Routines</h2>
             <Menu cat={routine.cat}/>
         </div>

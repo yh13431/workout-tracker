@@ -160,7 +160,7 @@ body {
                             }
 
                             h2 {
-                                font-size: 3.6rem;
+                                font-size: 4rem;
                                 margin-bottom:10%;
                             }
                         }
@@ -328,7 +328,6 @@ body {
                                     justify-content: center;
                                     align-items: center;
                                     cursor: pointer;
-                                    padding:0px;
                                 }
 
                                 .log {
@@ -560,63 +559,74 @@ body {
 
         // single   
         .single {
-            display: grid;
-            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding:20px;
+            
 
             .content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
+                text-align: center;
+                margin-bottom: 20px;
 
                 h1 {
-                    font-size: 50px;
+                    font-size: 4rem;
+                    margin-bottom: 10px;
+                }
+
+                h4 {
+                    font-size: 1.5rem;
+                    margin-bottom: 20px;
                 }
 
                 img {
-                    width: 30%;
-                    height: 30%;
-                    object-fit: cover;
+                    width: 100%;
+                    max-width: 600px;
+                    height: auto;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
                 }
-
-                .user {
-                    display:flex;
+    
+                .info {
+                    display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    gap: 10px;
+                    justify-content: center;
+                    text-align: center;
     
-                    .info {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-    
-                        .username {
-                            font-size:30px;
-                        }
-                    }
-
-                    .edit {
-                        font-size:30px;
-                        margin-bottom:20px;
+                    .username {
+                        font-size: 1.2rem;
+                        font-weight: bold;
                     }
                 }
+
+                .edit {
+                    font-size:1.6rem;
+                    cursor: pointer;
+                }
+            }
+            
+                
+            .user {
+                display:flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .exercise {
                 flex: 2;
+                margin-bottom:20px;
             }
 
             h2 {
-                font-size: 3rem;
-                margin-top:5rem;
+                font-size:2rem;
+                margin-top:2rem;
             }
         }
 
 
 
+        // menu
         .menu {
             display: flex;
             align-items: center;
@@ -699,72 +709,84 @@ body {
 
         //exercises
         .exercises {
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap:30px;
+            display:grid;
+            gap:2rem;
 
             .write {
-                label, button{
-                    background-color:  black;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    font-size:1.5rem;
-                    cursor: pointer;
-                    border-radius: 6px;
-                    transition: background-color 0.3s, color 0.3s;
-                    font-weight:bold;
-                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                        
-                    &:hover {
-                        background-color: white;
-                        color: black;
-                    }
-                }
+                display:grid;
+                align-items: center;
+                justify-content: center;
 
-                
-                .form {
-                    display:block;
-                }
-
-                input {
-                    padding: 15px; 
-                    border: 1px solid black;
-                    margin-bottom: 16px;
-                    border-radius: 5px;
-                    width: 100%;
-                    font-size: 1em;
-                    cursor:pointer;
-                    box-sizing: border-box;
+                h2 {
                     text-align: center;
+                    font-size:3rem;
+                    margin-bottom:1rem;
                 }
 
-                .upload-add {
+                .form {
                     display:grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 16px;
+                    align-items: center;
+                    justify-content: center;
+                    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+                    gap:0.2rem;
 
-                    .file, .button {
-                        display: flex;
-                        flex-direction: column; 
-                        align-items: center;
-                        gap: 20px;
+                    input {
+                        padding: 10px; 
+                        border: 1px solid black;
+                        margin-bottom: 16px;
+                        border-radius: 6px;
+                        width: 100%;
+                        font-size: 1.2em;
+                        cursor:pointer;
+                        box-sizing: border-box;
+                        text-align: center;
                     }
                 }
+
+                    label, button {
+                        text-align: center;
+                        background-color:  black;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        font-size:1.2rem;
+                        cursor: pointer;
+                        border-radius: 6px;
+                        transition: background-color 0.3s, color 0.3s;
+                        font-weight:bold;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                            
+                        &:hover {
+                            background-color: white;
+                            color: black;
+                        }
+                    }
+
+                    label {
+                        margin-bottom: 1rem;
+                    }
+
+                    button {
+                        background-color:  green;
+
+                        &:hover {
+                            color: green;
+                        }
+                    }
             }
 
             .listexercises {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                align-items: center; 
-                gap:4rem;
+                gap:2rem;
 
                 .exercise {
-                    flex: 1 0 calc(30% - 20px); 
+                    flex-basis: 0;
                     box-sizing: border-box;
+                    margin-bottom: 2rem;
+                    flex-grow: 1;
+
 
                     img {
                         width:100%;
@@ -780,16 +802,17 @@ body {
                     }
     
                     p {
-                        font-size:px;
+                        font-size:16px;
                         text-align: center;
                     }
     
-                    button{
-                        background-color:  black;
+                    .deleteexercise{
+                        margin-top:1rem;
+                        background-color:  rgb(218, 25, 25);
                         color: white;
                         border: none;
-                        padding: 10px 20px;
-                        font-size:1.5rem;
+                        padding: 10px 2rem;
+                        font-size:1.2rem;
                         cursor: pointer;
                         border-radius: 6px;
                         transition: background-color 0.3s, color 0.3s;
@@ -798,15 +821,14 @@ body {
                             
                         &:hover {
                             background-color: white;
-                            color: black;
+                            color: rgb(218, 25, 25);
                         }
                     }
                     
                     .delete {
-                        display:grid;
-                        align-items: center;
                         justify-content: center;
-                        margin:20px 0px;
+                        align-items: center;
+                        display:flex;
                     }
 
                     .info {
@@ -819,25 +841,110 @@ body {
         }
 
         @media (max-width: 768px) {
-            .exercises {
-                .write {
-                    .upload-add {
-                        grid-template-columns: 1fr;
-                    }
-                }
-        
                 .listexercises {
-                    .exercise {
-                        flex: 1 0 calc(100% - 20px);
+                    justify-content: center;
+                    display: flex;
+                    flex-direction: column;
 
-                        img {
-                            width:50%;
-                            height:50%;
-                        }
+
+                    .exercise { 
+                        flex-basis: 0 0 calc(33.33% - 2rem);
                     }
                 }
             }
+
+
+
+        // sets
+        .listsets {
+            justify-content: center;
+            align-items: center;
+            display:block;
+            
+            h2 {
+                text-align: center;
+            }
         }
+        
+        .set {
+            display: block;
+            text-align: center;
+            border: 1px solid #ccc;
+            justify-content: center;
+            padding:1rem;
+        }
+
+        input {
+            padding: 10px; 
+            border: 1px solid black;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 1.2em;
+            cursor:pointer;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .delete {
+            button {
+                background-color:  rgb(218, 25, 25);
+                color: white;
+                border: none;
+                padding: 10px 10px;
+                font-size:1.2rem;
+                cursor: pointer;
+                border-radius: 6px;
+                transition: background-color 0.3s, color 0.3s;
+                font-weight:bold;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                    
+                &:hover {
+                    background-color: white;
+                    color: rgb(218, 25, 25);
+                }
+            }
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+                button {
+                    background-color:  green;
+                    color:white;
+                    border: none;
+                    padding: 10px 2rem;
+                    font-size:1.2rem;
+                    cursor: pointer;
+                    border-radius: 6px;
+                    transition: background-color 0.3s, color 0.3s;
+                    font-weight:bold;
+                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                        
+                    &:hover {
+                        background-color: white;
+                        color: green;
+                    }
+                }
+            }
+
+        @media (max-width: 768px) {
+            .set {
+                padding: 0.5rem;
+            }
+        
+            .add {
+                flex: 0 0 calc(50% - 15px);
+            }
+        
+            button {
+                font-size: 1rem;
+            }
+        }
+    
             
 
 

@@ -20,14 +20,11 @@ export const addExercise = (req, res) => {
         if (err) return res.status(403).json("Token is invalid")
     
         // check for valid user, correct user, correct routine
-        const q = "INSERT INTO exercises(`etitle`, `edesc`, `sets`, `reps`, `weight`, `eimg`, `rid`, `uid`) VALUES (?)"
+        const q = "INSERT INTO exercises(`etitle`, `edesc`, `eimg`, `rid`, `uid`) VALUES (?)"
 
         const values = [
             req.body.etitle,
             req.body.edesc,
-            req.body.sets,
-            req.body.reps,
-            req.body.weight,
             req.body.eimg,
             req.body.rid,
             userInfo.id
