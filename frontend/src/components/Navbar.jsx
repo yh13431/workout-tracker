@@ -42,13 +42,31 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="body" ref={dropdownRef}>
-                    <div className="write">
-                        <Link className="link" to="/write">
-                            <button>
-                                Add Routine
-                            </button>
-                        </Link>
+                    <div className="saved">
+                        {currentUser ? (
+                                <Link className="link" to="/saved">
+                                    <button>
+                                        Saved Routines
+                                    </button>
+                                </Link>
+                        ) : (
+                            <button>Login to View Saved Routines</button>
+                        )
+                        }
                     </div>
+                    <div className="write">
+                        {currentUser ? (
+                            <Link className="link" to="/write">
+                                <button>
+                                    Add Routine
+                                </button>
+                            </Link>
+                        ) : (
+                            <button>Login to Add Routine</button>
+                        )
+                        }
+                    </div>
+                    
                     <button className="dropdown-toggle" onClick={handleDropdownToggle}>
                         ☰
                     </button>

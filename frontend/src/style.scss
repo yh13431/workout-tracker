@@ -176,7 +176,8 @@ body {
                     font-weight:bold;
 
 
-                    .write {
+                    .write,
+                    .saved {
                         margin-right: 60px;
 
                     }
@@ -574,7 +575,7 @@ body {
                     margin-bottom: 10px;
                 }
 
-                h4 {
+                h3 {
                     font-size: 1.5rem;
                     margin-bottom: 20px;
                 }
@@ -603,9 +604,38 @@ body {
                 .edit {
                     font-size:1.6rem;
                     cursor: pointer;
-                }
-            }
-            
+
+                    button {
+                        text-align: center;
+                        background-color:  black;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        font-size:1.2rem;
+                        cursor: pointer;
+                        border-radius: 6px;
+                        transition: background-color 0.3s, color 0.3s;
+                        font-weight:bold;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);       
+                      
+                        &.unsaved {
+                          background-color: green;
+                      
+                          &:hover {
+                            background-color: white;
+                            color: green;
+                          }               
+                        }
+                      
+                        &.saved {
+                          background-color: rgb(218, 25, 25);; 
+                      
+                          &:hover {
+                            background-color: white;
+                            color: rgb(218, 25, 25);;
+                          }            
+                        }
+                    }
                 
             .user {
                 display:flex;
@@ -622,8 +652,9 @@ body {
                 font-size:2rem;
                 margin-top:2rem;
             }
+          }
         }
-
+      }
 
 
         // menu
@@ -972,11 +1003,11 @@ body {
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                top:18%;
-                left:60%;
+                top:20%;
+                left:58%;
 
                 .contenttitle {
-                    font-size:4rem;
+                    font-size:5rem;
                 }
             }
 
@@ -1024,6 +1055,8 @@ body {
     
                 .item {
                     font-size:1rem;
+                    display: flex;
+                    flex-direction: row;
     
                     .cat {
                         display:flex;
@@ -1031,6 +1064,10 @@ body {
                         gap:1rem;
                         margin:1rem;
                         font-size:1.2rem;
+
+                        input {
+                            margin-top:1rem;
+                        }
                     }
                 }
             }
@@ -1116,4 +1153,66 @@ body {
                 }
             }
         }
-    }
+
+        // saved routines
+        .saved {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            
+          
+            h1 {
+              margin: 2rem 0;
+              text-align: center;
+              font-size: 4rem;
+            }
+          
+            .routine-table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 20px;
+
+          
+              th, td {
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align: left;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+              }
+          
+              th {
+                background-color: #f0f0f0;
+              }
+          
+              a {
+                text-decoration: none;
+                color: #333;
+                transition: background-color 0.3s;
+          
+                &:hover {
+                  background-color: #f0f0f0;
+                }
+              }
+          
+              button {
+                background-color: rgb(218, 25, 25);
+                color: white;
+                border: none;
+                padding: 8px 12px;
+                font-size: 1rem;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background-color 0.3s, color 0.3s;
+                font-weight: bold;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          
+                &:hover {
+                  background-color: white;
+                  color: rgb(218, 25, 25);
+                }
+            }
+        }
+    }          
+}

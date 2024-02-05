@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
-import { CiEdit } from "react-icons/ci";
-import { CiTrash } from "react-icons/ci";
+import { CiEdit, CiTrash } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu"
 import Exercise from "../components/Exercise";
@@ -10,8 +9,8 @@ import moment from "moment";
 import {AuthContext} from "../context/authContext"
 
 const Single = () => {
-
     const [routine, setRoutine] = useState({})
+    const [isSaved, setIsSaved] = useState(false);
 
     // get user data from routine
     const location = useLocation()
@@ -31,6 +30,17 @@ const Single = () => {
             }
         }
         fetchData()
+
+        const fetchSavedStatus = async () => {
+            try {
+              const res = await axios.get(`/saved/status/${routineId}`);
+              setIsSaved(res.data.saved);
+            } catch (err) {
+              console.error("Error fetching saved status:", err);
+            }
+          };
+      
+          fetchSavedStatus();
     }, [routineId])
 
 
@@ -42,6 +52,20 @@ const Single = () => {
             console.log(err)
         }
     }
+
+    const handleSave = async () => {
+        try {
+          if (isSaved) {
+            await axios.delete(`/saved/${routineId}`);
+          } else {
+            await axios.post(`/saved`, { rid: routineId });
+          }
+          setIsSaved((prevIsSaved) => !prevIsSaved);
+          console.log('Routine saved/unsaved');
+        } catch (error) {
+          console.error('Error saving/unsaving routine:', error);
+        }
+      };
 
     return (
         <div className="single">
@@ -60,6 +84,15 @@ const Single = () => {
                                     <CiEdit />
                                 </Link>
                                 <CiTrash onClick={handleDelete}/>
+                                {isSaved ? (
+                                    <button className="saved" onClick={handleSave}>
+                                        Unsave
+                                    </button>
+                                ) : (
+                                    <button className="unsaved" onClick={handleSave}>
+                                        Save
+                                    </button>
+                                )}
                             </div>
                         )}
                     </div>

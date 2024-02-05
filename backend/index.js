@@ -3,6 +3,7 @@ import routineRoutes from "./routes/routines.js"
 import authRoutes from "./routes/auth.js"
 import exerciseRoutes from "./routes/exercises.js"
 import setRoutes from "./routes/sets.js"
+import savedRoutes from "./routes/saved.js"
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 import cors from "cors";
@@ -46,6 +47,8 @@ app.use("/api/routines", routineRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/api/exercises", exerciseRoutes)
 app.use("/api/sets", setRoutes)
+app.use("/api/saved", savedRoutes)
+
 
 app.listen(3001, () => {
     console.log("Server running on port 3001")
