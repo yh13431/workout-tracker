@@ -2,13 +2,24 @@ import { db } from "../db.js"
 import jwt from "jsonwebtoken"
 
 export const getRoutines = (req, res) => {
-    const q = req.query.cat ? "SELECT * FROM routines WHERE cat=?" : "SELECT * FROM routines";
-
-    db.query(q, [req.query.cat], (err, data) => {
-        if(err) return res.status(500).json(err)
-
-        return res.status(200).json(data)
-    })
+    const { cat, search } = req.query;
+    let q = "SELECT * FROM routines";
+    if (search) {
+        q += " WHERE title LIKE ?";
+        const searchParam = `%${search}%`; 
+        db.query(q, [searchParam], (err, data) => {
+            if (err) return res.status(500).json(err);
+            return res.status(200).json(data);
+        });
+    } else {
+        if (cat) {
+            q += " WHERE cat=?";
+        }
+        db.query(q, [req.query.cat], (err, data) => {
+            if(err) return res.status(500).json(err)
+            return res.status(200).json(data);
+        })
+    }
 }
 
 export const getRoutine = (req, res) => {

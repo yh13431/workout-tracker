@@ -50,7 +50,7 @@ const Navbar = () => {
                                     </button>
                                 </Link>
                         ) : (
-                            <button>Login to View Saved Routines</button>
+                            <button>Saved Routines</button>
                         )
                         }
                     </div>
@@ -62,7 +62,7 @@ const Navbar = () => {
                                 </button>
                             </Link>
                         ) : (
-                            <button>Login to Add Routine</button>
+                            <button>Add Routine</button>
                         )
                         }
                     </div>
@@ -75,25 +75,27 @@ const Navbar = () => {
                                 <Link className="link" to="/?cat=shoulders">
                                     <h6>Shoulders</h6>
                                 </Link>
-                                <Link className="link" to="/?cat=shoulders">
+                                <Link className="link" to="/?cat=arms">
                                     <h6>Arms</h6>
                                 </Link>                    
-                                <Link className="link" to="/?cat=shoulders">
+                                <Link className="link" to="/?cat=core">
                                     <h6>Core</h6>
                                 </Link>                          
-                                <Link className="link" to="/?cat=shoulders">
+                                <Link className="link" to="/?cat=chest">
                                     <h6>Chest</h6>
                                 </Link>                      
-                                <Link className="link" to="/?cat=shoulders">
+                                <Link className="link" to="/?cat=back">
                                     <h6>Back</h6>
                                 </Link>                     
-                                <Link className="link" to="/?cat=shoulders">
+                                <Link className="link" to="/?cat=legs">
                                     <h6>Legs</h6>
                                 </Link>       
                             </div>
                             <div className="log">
                                 {currentUser ? (
-                                    <button onClick={logout}>Log Out</button >
+                                    <Link className="link" to="/">
+                                        <button onClick={logout}>Log Out</button>
+                                    </Link>
                                 ) : (
                                     <Link className="link" to="/login">
                                         <button>

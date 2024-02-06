@@ -26,8 +26,8 @@ const Menu = ({cat}) => {
                 <div className="routine" key={routine.id} style={{ backgroundImage: `url(../upload/${routine.img})` }}>
                     <div className="overlay" />
                     <div className="content">
-                                    <h1>{routine.title}</h1>
-                            </div>
+                        <h1>{routine.title}</h1>
+                    </div>
                 </div>
                 </Link>
                 </>

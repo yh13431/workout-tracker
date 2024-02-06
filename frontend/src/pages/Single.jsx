@@ -11,6 +11,7 @@ import {AuthContext} from "../context/authContext"
 const Single = () => {
     const [routine, setRoutine] = useState({})
     const [isSaved, setIsSaved] = useState(false);
+    const [totalWeight, setTotalWeight] = useState(0);
 
     // get user data from routine
     const location = useLocation()
@@ -24,23 +25,14 @@ const Single = () => {
         const fetchData = async() => {
             try {
                 const res = await axios.get(`/routines/${routineId}`)
+                console.log('Response from server:', res.data);
                 setRoutine(res.data)
+                setTotalWeight(res.data.total_weight || 0)
             } catch(err) {
                 console.log(err)
             }
         }
         fetchData()
-
-        const fetchSavedStatus = async () => {
-            try {
-              const res = await axios.get(`/saved/status/${routineId}`);
-              setIsSaved(res.data.saved);
-            } catch (err) {
-              console.error("Error fetching saved status:", err);
-            }
-          };
-      
-          fetchSavedStatus();
     }, [routineId])
 
 
@@ -84,18 +76,21 @@ const Single = () => {
                                     <CiEdit />
                                 </Link>
                                 <CiTrash onClick={handleDelete}/>
-                                {isSaved ? (
-                                    <button className="saved" onClick={handleSave}>
-                                        Unsave
-                                    </button>
-                                ) : (
-                                    <button className="unsaved" onClick={handleSave}>
-                                        Save
-                                    </button>
-                                )}
                             </div>
                         )}
+                        {isSaved ? (
+                            <button className="saved" onClick={handleSave}>
+                                Unsave Routine
+                            </button>
+                            ) : (
+                            <button className="unsaved" onClick={handleSave}>
+                                Save Routine
+                            </button>
+                        )}
                     </div>
+                </div>
+                <div className="total-weight">
+                    <p>Total Weight: {totalWeight} kg</p>
                 </div>
             </div>
             <Exercise className="exercise" rid={routine.id}/>

@@ -8,22 +8,23 @@ import Description from "../components/Description";
 
 const Home = () => {
     const [routines, setRoutines] = useState([])
-
-    // send routine to its category
+    const [searchQuery, setSearchQuery] = useState("");
     const cat = useLocation().search
+    const { currentUser } = useContext(AuthContext)
 
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const res = await axios.get(`/routines${cat}`)
+                const res = await axios.get(`/routines${cat}`, {
+                    params: { search: searchQuery }
+                })
                 setRoutines(res.data)
             } catch(err) {
                 console.log(err)
             }
         }
         fetchData()
-    }, [cat])    
-    const { currentUser } = useContext(AuthContext)
+    }, [cat, searchQuery])    
 
 
     return (
@@ -31,6 +32,14 @@ const Home = () => {
             <Hero />
             <Description />
             <h1>View Routines</h1>
+            <div className="search-bar">
+                <input
+                    type="text"
+                    placeholder="Search routines"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </div>
             <div className="routines">
                 {routines.map(routine => (
                     <div className="routine-card" key={routine.id}>
@@ -46,7 +55,7 @@ const Home = () => {
                                 <div className="logincard">
                                     <img src={`../upload/${routine.img}`} alt={routine.title} />
                                     <div className="card-content">
-                                        Login To View
+                                        <h2>{routine.title}</h2>
                                     </div>
                                 </div>
                             )}
