@@ -31,7 +31,6 @@ const Home = () => {
         <div className="home">
             <Hero />
             <Description />
-            <h1>View Routines</h1>
             <div className="search-bar">
                 <input
                     type="text"
@@ -41,27 +40,31 @@ const Home = () => {
                 />
             </div>
             <div className="routines">
-                {routines.map(routine => (
-                    <div className="routine-card" key={routine.id}>
-                        <div className="routine">
-                            {currentUser ? (
-                                <Link className="link" to={`/routine/${routine.id}`}>
-                                    <img src={`../upload/${routine.img}` }  alt={routine.title} />
-                                    <div className="card-content">
-                                        <h2>{routine.title}</h2>
+                {routines.length === 0 ? (
+                    <h1>Routine does not exist.</h1>
+                ) : (
+                    routines.map(routine => (
+                        <div className="routine-card" key={routine.id}>
+                            <div className="routine">
+                                {currentUser ? (
+                                    <Link className="link" to={`/routine/${routine.id}`}>
+                                        <img src={`../upload/${routine.img}`}  alt={routine.title} />
+                                        <div className="card-content">
+                                            <h2>{routine.title}</h2>
+                                        </div>
+                                    </Link>
+                                ) : (
+                                    <div className="logincard">
+                                        <img src={`../upload/${routine.img}`} alt={routine.title} />
+                                        <div className="card-content">
+                                            <h2>{routine.title}</h2>
+                                        </div>
                                     </div>
-                                </Link>
-                            ) : (
-                                <div className="logincard">
-                                    <img src={`../upload/${routine.img}`} alt={routine.title} />
-                                    <div className="card-content">
-                                        <h2>{routine.title}</h2>
-                                    </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                )}
             </div>
         </div>
     )

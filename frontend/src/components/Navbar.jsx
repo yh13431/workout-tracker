@@ -1,12 +1,14 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import logo from "../images/logo.png"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
+import { FaDumbbell } from 'react-icons/fa';
+import { RiLogoutBoxLine, RiLoginBoxLine } from 'react-icons/ri';
 
 const Navbar = () => {
     const { currentUser, logout } = useContext(AuthContext)
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const dropdownRef = useRef(null);
+
 
     const handleDropdownToggle = () => {
         setDropdownVisible(!dropdownVisible);
@@ -36,24 +38,12 @@ const Navbar = () => {
                 <div className="header">
                     <div className="logo">
                         <Link className="link" to="/">
-                            <img src={logo} alt="logo" />
+                            <FaDumbbell size={64}/>
                             <h2>Workout Tracker</h2>
                         </Link>
                     </div>
                 </div>
                 <div className="body" ref={dropdownRef}>
-                    <div className="saved">
-                        {currentUser ? (
-                                <Link className="link" to="/saved">
-                                    <button>
-                                        Saved Routines
-                                    </button>
-                                </Link>
-                        ) : (
-                            <button>Saved Routines</button>
-                        )
-                        }
-                    </div>
                     <div className="write">
                         {currentUser ? (
                             <Link className="link" to="/write">
@@ -66,9 +56,20 @@ const Navbar = () => {
                         )
                         }
                     </div>
-                    
+                    <div className="saved">
+                        {currentUser ? (
+                                <Link className="link" to="/saved">
+                                    <button>
+                                        Saved Routines
+                                    </button>
+                                </Link>
+                        ) : (
+                            <button>Saved Routines</button>
+                        )
+                        }
+                    </div>
                     <button className="dropdown-toggle" onClick={handleDropdownToggle}>
-                        ☰
+                        Categories
                     </button>
                         <div className={`dropdown-menu ${dropdownVisible ? 'visible' : ''}`}>      
                             <div className="categories">
@@ -91,22 +92,24 @@ const Navbar = () => {
                                     <h6>Legs</h6>
                                 </Link>       
                             </div>
-                            <div className="log">
-                                {currentUser ? (
-                                    <Link className="link" to="/">
-                                        <button onClick={logout}>Log Out</button>
-                                    </Link>
-                                ) : (
-                                    <Link className="link" to="/login">
-                                        <button>
-                                            Login or Register
-                                        </button>    
-                                    </Link>
-                                )}
-                            </div>  
+                        </div>
+                        <div className="log">
+                            {currentUser ? (
+                                <Link to="/">
+                                    <button onClick={logout}>
+                                        <RiLogoutBoxLine /> Log Out
+                                    </button>
+                                </Link>
+                            ) : (
+                                <Link to="/login">
+                                    <button>
+                                        <RiLoginBoxLine /> Login
+                                    </button>
+                                </Link>
+                            )}
                         </div>
                     </div>
-                </div>
+              </div>
         </div>
     )
 }

@@ -4,7 +4,8 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="hero-content">
-        <div className='title'>Workout Tracker</div>
+        <div className='title-first'>Workout </div>
+        <div className='title-second'>Tracker</div>
       </div>
     </div>
   );

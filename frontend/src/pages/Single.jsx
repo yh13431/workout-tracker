@@ -11,7 +11,6 @@ import {AuthContext} from "../context/authContext"
 const Single = () => {
     const [routine, setRoutine] = useState({})
     const [isSaved, setIsSaved] = useState(false);
-    const [totalWeight, setTotalWeight] = useState(0);
 
     // get user data from routine
     const location = useLocation()
@@ -27,7 +26,6 @@ const Single = () => {
                 const res = await axios.get(`/routines/${routineId}`)
                 console.log('Response from server:', res.data);
                 setRoutine(res.data)
-                setTotalWeight(res.data.total_weight || 0)
             } catch(err) {
                 console.log(err)
             }
@@ -61,18 +59,25 @@ const Single = () => {
 
     return (
         <div className="single">
-            <div className="content">
-                <h1>{routine.title}</h1>
-                <img src={`../upload/${routine.img}`} alt="" />
-                <h3>{routine.desc}</h3>
-                <div className="user">
-                    {routine.userImg && <img src={routine.userImg} alt="" />}
+            <div className="details-section">
+                <div className="singledetails">
+                    <img src={`../upload/${routine.img}`} alt="" />
+                    <div className="details">
+                        <h1>{routine.title}</h1>
+                        <div className="description">
+                            <h3>{routine.desc}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="user">
+                {routine.userImg && <img src={routine.userImg} alt="" />}
                     <div className="info">
                         <span className="username">{routine.username}</span>
                         <p>Created {moment(routine.date).fromNow()}</p>
                         {currentUser.username === routine.username && (
                             <div className="edit">
-                                <Link to={`/write?edit=2`} state={routine}>
+                                <Link className="link" to={`/write?edit=2`} state={routine}>
                                     <CiEdit />
                                 </Link>
                                 <CiTrash onClick={handleDelete}/>
@@ -89,12 +94,8 @@ const Single = () => {
                         )}
                     </div>
                 </div>
-                <div className="total-weight">
-                    <p>Total Weight: {totalWeight} kg</p>
-                </div>
-            </div>
             <Exercise className="exercise" rid={routine.id}/>
-            <h2>View Other Routines</h2>
+            <h1>View Other Routines</h1>
             <Menu cat={routine.cat}/>
         </div>
     )

@@ -10,7 +10,6 @@ import Write from './pages/Write'
 import Home from './pages/Home'
 import Saved from './pages/Saved'
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
 import './style.scss'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -22,7 +21,6 @@ const Dashboard = () => {
   <>
       <Navbar />
       <Outlet />
-      <Footer />
   </>
   )
 } 
