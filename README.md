@@ -1,5 +1,5 @@
-![logo](https://github.com/yh13431/workout-tracker/assets/106964833/810b8220-a3a0-4247-9694-db462e897e1e)<br/>
 <p align="center">
+  <img src="https://github.com/yh13431/workout-tracker/assets/106964833/810b8220-a3a0-4247-9694-db462e897e1e" />
   <h3 align="center">Workout Tracker</h3>
   <p align="center">
     Full stack JavaScript application for tracking gym routines
