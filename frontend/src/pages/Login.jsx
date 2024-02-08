@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
-import logo from "../images/logo.png"
+import { FaDumbbell } from 'react-icons/fa';
 
 const Login = () => {
 
@@ -35,16 +35,18 @@ const Login = () => {
 
     return (
         <div className="auth">
+            <div className="header">
+                <FaDumbbell className="dumbbell" size={64}/>
+                <h1>Log In</h1>
+            </div>
             <div className="content">
                 <form>
-                    <h1>Log In</h1>
                     <input required type="text" placeholder="Username" name="username" onChange={handleChange}/>
                     <input required type="password" placeholder="Password" name="password" onChange={handleChange}/>
                     <button onClick={handleSubmit}>Log In</button>
                     {err && <p>{err}</p>}
                     <span>No account? <Link to="/register">Register Here</Link></span>
                 </form>
-                <img src={logo} alt="logo" />
             </div>
         </div>
     )

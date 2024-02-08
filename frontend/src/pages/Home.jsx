@@ -31,6 +31,7 @@ const Home = () => {
         <div className="home">
             <Hero />
             <Description />
+            <h1>Routines</h1>
             <div className="search-bar">
                 <input
                     type="text"
@@ -41,7 +42,7 @@ const Home = () => {
             </div>
             <div className="routines">
                 {routines.length === 0 ? (
-                    <h1>Routine does not exist.</h1>
+                    <h2>Routine does not exist.</h2>
                 ) : (
                     routines.map(routine => (
                         <div className="routine-card" key={routine.id}>

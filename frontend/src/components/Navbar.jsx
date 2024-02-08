@@ -38,7 +38,7 @@ const Navbar = () => {
                 <div className="header">
                     <div className="logo">
                         <Link className="link" to="/">
-                            <FaDumbbell size={64}/>
+                            <FaDumbbell className="dumbbell" size={48}/>
                             <h2>Workout Tracker</h2>
                         </Link>
                     </div>
@@ -73,6 +73,9 @@ const Navbar = () => {
                     </button>
                         <div className={`dropdown-menu ${dropdownVisible ? 'visible' : ''}`}>      
                             <div className="categories">
+                                <Link className="link" to="/">
+                                    <h6>All</h6>
+                                </Link> 
                                 <Link className="link" to="/?cat=shoulders">
                                     <h6>Shoulders</h6>
                                 </Link>
@@ -90,7 +93,7 @@ const Navbar = () => {
                                 </Link>                     
                                 <Link className="link" to="/?cat=legs">
                                     <h6>Legs</h6>
-                                </Link>       
+                                </Link>           
                             </div>
                         </div>
                         <div className="log">
@@ -103,7 +106,7 @@ const Navbar = () => {
                             ) : (
                                 <Link to="/login">
                                     <button>
-                                        <RiLoginBoxLine /> Login
+                                        <RiLoginBoxLine /> Log In
                                     </button>
                                 </Link>
                             )}

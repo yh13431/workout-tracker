@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
-import logo from "../images/logo.png"
+import { FaDumbbell } from 'react-icons/fa';
 
 
 const Register = () => {
@@ -32,10 +32,12 @@ const Register = () => {
 
     return (
         <div className="auth">
+             <div className="header">
+                <FaDumbbell className="dumbbell" size={64}/>
+                <h1>Register</h1>
+            </div>
             <div className="content">
-                <img src={logo} alt="logo" />
                 <form>
-                    <h1>Register</h1>
                     <input required type="text" placeholder="Username" name='username' onChange={handleChange}/>
                     <input required type="email" placeholder="Email" name='email' onChange={handleChange}/>
                     <input required type="password" placeholder="Password" name='password' onChange={handleChange}/>

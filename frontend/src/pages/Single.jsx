@@ -59,41 +59,29 @@ const Single = () => {
 
     return (
         <div className="single">
-            <div className="details-section">
-                <div className="singledetails">
-                    <img src={`../upload/${routine.img}`} alt="" />
-                    <div className="details">
-                        <h1>{routine.title}</h1>
-                        <div className="description">
-                            <h3>{routine.desc}</h3>
-                        </div>
+            <div className="info">
+                <img src={`../upload/${routine.img}`} alt="" />
+                <h1>{routine.title}</h1>
+                <span className="username">{routine.username}</span>
+                <p>Created {moment(routine.date).fromNow()}</p>
+                {currentUser.username === routine.username && (
+                    <div className="edit">
+                        <Link className="link" to={`/write?edit=2`} state={routine}>
+                            <CiEdit />
+                        </Link>
+                        <CiTrash onClick={handleDelete}/>
                     </div>
-                </div>
+                )}
+                {isSaved ? (
+                    <button className="saved" onClick={handleSave}>
+                        Unsave Routine
+                    </button>
+                ) : (
+                    <button className="unsaved" onClick={handleSave}>
+                        Save Routine
+                    </button>
+                )}
             </div>
-            <div className="user">
-                {routine.userImg && <img src={routine.userImg} alt="" />}
-                    <div className="info">
-                        <span className="username">{routine.username}</span>
-                        <p>Created {moment(routine.date).fromNow()}</p>
-                        {currentUser.username === routine.username && (
-                            <div className="edit">
-                                <Link className="link" to={`/write?edit=2`} state={routine}>
-                                    <CiEdit />
-                                </Link>
-                                <CiTrash onClick={handleDelete}/>
-                            </div>
-                        )}
-                        {isSaved ? (
-                            <button className="saved" onClick={handleSave}>
-                                Unsave Routine
-                            </button>
-                            ) : (
-                            <button className="unsaved" onClick={handleSave}>
-                                Save Routine
-                            </button>
-                        )}
-                    </div>
-                </div>
             <Exercise className="exercise" rid={routine.id}/>
             <h1>View Other Routines</h1>
             <Menu cat={routine.cat}/>

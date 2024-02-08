@@ -7,7 +7,7 @@ body {
 .app {
     .container {
         font-family:'Work Sans', sans-serif;
-        color:#0d7feb;;
+        color:#0d7feb;
         
         .link {
             text-decoration: none;
@@ -18,23 +18,21 @@ body {
         // login/register page
 
         .auth{   
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            h1 {
+                font-size: 80px;
+            }
+
             .content {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin-right:10%;
-            }
-
-            img {
-                width:30%;
-                height:auto;
-                order:2;
-            }
-
-            h1 {
-                font-size: 100px;
-                text-align: center;
-                margin-top: 10px;
             }
 
             form {
@@ -103,11 +101,6 @@ body {
               margin-right: 0;
             }
         
-            img {
-              width: 50%;
-              order: 1;
-            }
-        
             h1 {
               font-size: 60px;
               margin-top: 0;
@@ -133,30 +126,29 @@ body {
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
             align-items: center;
             display: flex;
-            background-color:#fff;
+            background-color:#333333;
 
             .container {
                 display: flex;
                 align-items: center;
                 width:100%;
-                justify-content: space-between;
+                justify-content: space-around;
 
                 .header {
                     display: flex;
                     align-items: center;
-                    margin:20px;
         
                     .logo{
                         .link {
                             display: flex;
                             align-items: center;
                             text-decoration: none;
-                            color: #0d7feb;;
                             justify-content: center;
 
                             h2 {
                                 font-size: 3.2rem;
-                                margin-left:3rem;
+                                margin-left:2rem;
+                                color:#fff;
                             }
                         }
                     }
@@ -172,8 +164,12 @@ body {
 
                     .write,
                     .saved ,
-                    .dropdown-toggle{
+                    .dropdown-toggle {
                         margin-right:3rem;
+                    }
+                    
+                    .log {
+                        margin-left:3rem;
                     }
                     
                     button {
@@ -198,8 +194,8 @@ body {
                     .dropdown-menu {
                         display:none;
                         position: absolute;
-                        top: 100%;
-                        right: 20%;
+                        top: 90%;
+                        right: 27%;
                         background-color:#fff;
                         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
                         border-radius: 6px;
@@ -218,7 +214,7 @@ body {
                             cursor: pointer;
                             padding:10px;
                             transition: background-color 0.3s;
-                            font-size:30px;
+                            font-size:1.7rem;
                             color: #333333;
                             .link {
                                 cursor: pointer;
@@ -235,18 +231,12 @@ body {
 
             @media only screen and (max-width: 768px) {
                     .container {
+                        margin-left:2rem;
                         .header {
-                            margin:0px;
                             .logo{
                                 .link {
-                                    img {
-                                        display:none;
-                                    }
-        
                                     h2 {
-                                        font-size: 2rem;
-                                        margin-left:0.6rem;
-                                        margin-top:1rem;
+                                        display:none;
                                     }
                                 }
                             }
@@ -261,7 +251,7 @@ body {
                                 background-color:  #0d7feb;
                                 color: white;
                                 border: none;
-                                padding: 10px 20px;
+                                padding: 2px 12px;
                                 font-size:1rem;
                                 cursor: pointer;
                                 border-radius: 6px;
@@ -376,12 +366,18 @@ body {
 
                 h1 {
                     font-size:10rem;
+                    margin-bottom:2rem;
+                }
+
+                h3 {
+                    font-size:1.6rem;
+                    line-height: 2;
+                    color:#333333;
                 }
         
                 h2 {
                     font-size: 2rem;
-                    line-height: 2;
-                    color:#333333;
+                    color:#0d7feb;
                 }
               }
           
@@ -404,12 +400,16 @@ body {
 
         // homepage
         .home {
+            h1 {
+                font-size:10rem;
+                text-align: center;
+                margin:6rem;
+            }
             .routines {
-                margin-top:60px;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
-                gap:2rem;
+                gap:4rem;
 
                 .routine-card {
                     margin: 10px;
@@ -420,6 +420,7 @@ body {
                     max-width:300px;
                     height: 350px;
                     transition: transform 0.3s ease;
+                    background-color: #fff;
 
                     &:hover {
                         transform: scale(1.06);
@@ -435,7 +436,7 @@ body {
                         position: relative;
 
                         img {
-                            width: 100%;
+                            width: 300px;
                             height: 350px;
                             object-fit: cover;
                         }
@@ -448,7 +449,7 @@ body {
                             color:#fff;
                             font-size: 1.8em;
                             font-weight: bold;
-                            background-color: rgba(26, 145, 255, 0.7); 
+                            background-color: rgba(26, 145, 255, 0.9); 
                             text-align: center;
                         }
                     }
@@ -457,7 +458,7 @@ body {
 
             .search-bar {
                 display: flex;
-                margin:10rem;
+                margin:6rem;
                 justify-content: center;
             }
         
@@ -469,6 +470,7 @@ body {
                 border-radius: 25px;
                 font-size: 16px;
                 outline:none;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
                 .search-bar input[type="text"]:focus {
                     outline: none;
@@ -522,83 +524,42 @@ body {
             margin-top:8rem;
 
             h1 {
-                margin-top:6rem;
                 text-align: center;
-                font-size:3rem;
+                font-size:4rem;
             }
 
-            .details-section {
-                margin-left: 10rem;
-            }
 
-            .singledetails {
-                display: flex;
+            .info {
+                display:flex;
                 align-items: center;
-                flex:1;
-            }
+                justify-content: center;
+                gap:6rem;
+                color:#333333;
+                margin-bottom:2rem;
 
-            img {
-                width: 200px;
-                height:200px;
-                border-radius: 8px;
-                margin-right:2rem;
-            }
-
-            .details {
-                h1 {
-                    font-size: 6rem;
-                    margin:0;
-                }
-
-                .description {
-                    h3 {
-                        font-size: 1.2rem;
-                    }
+                img {
+                    width:160px;
+                    height:160px;
                 }
             }
-
-                .user {
-                    display:flex;
-                    align-items: center;
-                    justify-content: center;
-                    flex-direction: column;
-                    margin-bottom: 4rem;
-                }
-        
-                .info {
-                    display: flex;
-                    align-items: center;
-                    gap:2rem;
-                }
                         
-                .username {
-                    font-size: 1.2rem;
-                    font-weight: bold;
-                }
+            .username {
+                font-size: 1.6rem;
+                font-weight: bold;
+            }
             
 
-                .edit {
-                    font-size:1.6rem;
-                    cursor: pointer;
+            .edit {
+                font-size:1.6rem;
+                cursor: pointer;
 
-                    .link {
-                        margin-right:2rem;
-                    }
+                .link {
+                    margin-right:6rem;
                 }
-            
-                .exercise {
-                    flex: 2;
-                    margin-bottom:20px;
-                }
-
-                h2 {
-                    font-size:2rem;
-                    margin-top:2rem;
-                }
+            }
 
                 button {
                     text-align: center;
-                    background-color:  black;
                     color: white;
                     border: none;
                     padding: 10px 20px;
@@ -643,12 +604,18 @@ body {
                 position: relative;
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                height:400px;
-                width:400px;
+                width: 300px;
+                height: 350px;
                 transition: transform 0.3s ease;
-
+                
                 &:hover {
                     transform: scale(1.03);
+                }
+                
+                img {
+                    width: 200px;
+                    height: 350px;
+                    object-fit: cover;
                 }
 
                 .overlay {
@@ -677,12 +644,6 @@ body {
                         color:white
                     }
                 }
-        
-              img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
             }
         } 
 
@@ -714,7 +675,8 @@ body {
             .listexercises {
                 display: flex;
                 flex-wrap: wrap;
-                gap:4rem;
+                gap:8rem;
+                justify-content: center;
 
                 .exercise {
                     border-radius: 8px;
@@ -728,17 +690,6 @@ body {
                         object-fit: cover;
                         border-top-left-radius: 8px;
                         border-top-right-radius: 8px;
-                    }
-    
-                    span {
-                        font-size:30px;
-                        font-weight: bold;
-                        text-align: center;
-                    }
-    
-                    p {
-                        font-size:16px;
-                        text-align: center;
                     }
     
                     .deleteexercise{
@@ -767,9 +718,8 @@ body {
                     }
 
                     .info {
+                        display: block;
                         text-align: center;
-                        display: flex;
-                        flex-direction: column;
                     }
                 }
             }
@@ -997,20 +947,33 @@ body {
                     gap:4rem;
 
                     .routineinput {
-                        padding: 20px;
-                        border: none;
-                        border-radius:6px;
-                        width:30rem;
+                        padding: 10px;
+                        border: 1px solid #0d7feb;
+                        border-radius: 25px;
+                        width: 800px;
+                        height:4rem;
                         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                        font-size:1.2rem;
-                        text-align: center;
+                        font-size: 16px;
+                        outline:none;
                     }
     
                     .file {
-                        text-decoration: underline;
-                        cursor:pointer;
                         margin-bottom:2rem;
-                        font-size:1.4rem;
+                        background-color:  #0d7feb;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        font-size:1.5rem;
+                        cursor: pointer;
+                        border-radius: 6px;
+                        transition: background-color 0.3s, color 0.3s;
+                        font-weight:bold;
+                        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                    
+                        &:hover {
+                            background-color: white;
+                            color: #0d7feb;
+                        }
                     }
                 }
                 
