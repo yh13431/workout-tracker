@@ -1,7 +1,8 @@
-<br/>
+![logo](https://github.com/yh13431/workout-tracker/assets/106964833/810b8220-a3a0-4247-9694-db462e897e1e)<br/>
 <p align="center">
   <h3 align="center">Workout Tracker</h3>
   <p align="center">
+    ![logo](https://github.com/yh13431/workout-tracker/assets/106964833/ee694a3b-9ee0-47c6-9c6c-6e99fe28297b)
     Full stack JavaScript application for tracking gym routines
     <br/>
     <br/>
