@@ -2,7 +2,6 @@
 <p align="center">
   <h3 align="center">Workout Tracker</h3>
   <p align="center">
-    ![logo]
     Full stack JavaScript application for tracking gym routines
     <br/>
     <br/>
