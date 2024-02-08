@@ -70,6 +70,7 @@ const Single = () => {
             <div className="info">
                 <img src={`../upload/${routine.img}`} alt="" />
                 <h1>{routine.title}</h1>
+                <h3>{routine.desc}</h3>
                 <span className="username">{routine.username}</span>
                 <p>Created {moment(routine.date).fromNow()}</p>
                 {currentUser.username === routine.username && (
