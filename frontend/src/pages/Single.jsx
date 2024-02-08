@@ -33,6 +33,13 @@ const Single = () => {
         fetchData()
     }, [routineId])
 
+    useEffect(() => {
+        const savedState = localStorage.getItem(`saved_${routineId}`);
+        if (savedState) {
+          setIsSaved(JSON.parse(savedState));
+        }
+    }, [routineId]);
+
 
     const handleDelete = async() => {
         try {
@@ -51,6 +58,7 @@ const Single = () => {
             await axios.post(`/saved`, { rid: routineId });
           }
           setIsSaved((prevIsSaved) => !prevIsSaved);
+          localStorage.setItem(`saved_${routineId}`, JSON.stringify(!isSaved));
           console.log('Routine saved/unsaved');
         } catch (error) {
           console.error('Error saving/unsaving routine:', error);
@@ -72,15 +80,17 @@ const Single = () => {
                         <CiTrash onClick={handleDelete}/>
                     </div>
                 )}
-                {isSaved ? (
-                    <button className="saved" onClick={handleSave}>
-                        Unsave Routine
-                    </button>
-                ) : (
-                    <button className="unsaved" onClick={handleSave}>
-                        Save Routine
-                    </button>
-                )}
+            <div className="button-container">
+                    {isSaved ? (
+                        <button className="saved" onClick={handleSave}>
+                            Unsave Routine
+                        </button>
+                    ) : (
+                        <button className="unsaved" onClick={handleSave}>
+                            Save Routine
+                        </button>
+                    )}
+                </div>
             </div>
             <Exercise className="exercise" rid={routine.id}/>
             <h1>View Other Routines</h1>
