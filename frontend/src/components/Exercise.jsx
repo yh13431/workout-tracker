@@ -98,7 +98,7 @@ const Exercise = ({rid}) => {
     return (
         <div className="exercises">
             <div className="listexercises">
-                {error ? "Something went wrong" : isLoading ? "loading" : data.map((exercise) => (
+                {error ? "Something went wrong" : isLoading ? "loading" : data ? data.map((exercise) => (
                 <div className="exercise" key={exercise.id}>
                     <img src={"/upload/" + exercise.eimg} alt="" />
                     <div className="info">
@@ -112,7 +112,7 @@ const Exercise = ({rid}) => {
                         </div>
                     )}
                 </div>
-            ))}
+            )) : "No data" }
             </div>
             <div className="write">
                 {currentUser.username === routine.username && (
