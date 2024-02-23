@@ -98,7 +98,7 @@ const Exercise = ({rid}) => {
     return (
         <div className="exercises">
             <div className="listexercises">
-                {error ? "Something went wrong" : isLoading ? "loading" : data ? data.map((exercise) => (
+                {error ? "Something went wrong" : isLoading ? "loading" : data && Array.isArray(data) ? data.map((exercise) => (
                 <div className="exercise" key={exercise.id}>
                     <img src={"/upload/" + exercise.eimg} alt="" />
                     <div className="info">
