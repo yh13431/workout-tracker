@@ -98,21 +98,30 @@ const Exercise = ({rid}) => {
     return (
         <div className="exercises">
             <div className="listexercises">
-                {error ? "Something went wrong" : isLoading ? "loading" : data && Array.isArray(data) ? data.map((exercise) => (
-                <div className="exercise" key={exercise.id}>
-                    <img src={"/upload/" + exercise.eimg} alt="" />
-                    <div className="info">
-                        <h4>{exercise.etitle}</h4>
-                        <h4>{exercise.edesc}</h4>
-                    </div>
-                    <Set eid={exercise.id} />
-                    {currentUser.username === routine.username && (
-                        <div className="delete" key={exercise.id}>
-                            <button className="deleteexercise" onClick={() => handleDelete(exercise.id)}>Delete Exercise</button>
+                {error ? "Something went wrong" : isLoading ? "loading" : data && Array.isArray(data) ? (
+                    (() => {
+                    const exerciseElements = [];
+                    for (let i = 0; i < data.length; i++) {
+                        const exercise = data[i];
+                        exerciseElements.push(
+                        <div className="exercise" key={exercise.id}>
+                            <img src={"/upload/" + exercise.eimg} alt="" />
+                            <div className="info">
+                                <h4>{exercise.etitle}</h4>
+                                <h4>{exercise.edesc}</h4>
+                            </div>
+                            <Set eid={exercise.id} />
+                            {currentUser.username === routine.username && (
+                                <div className="delete" key={exercise.id}>
+                                    <button className="deleteexercise" onClick={() => handleDelete(exercise.id)}>Delete Exercise</button>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-            )) : "No data" }
+                        )
+                    }
+                    return exerciseElements.length > 0 ? exerciseElements : "No data";
+                })()
+            ) : "No data" }
             </div>
             <div className="write">
                 {currentUser.username === routine.username && (
