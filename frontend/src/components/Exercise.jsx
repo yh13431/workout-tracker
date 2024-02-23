@@ -23,7 +23,7 @@ const Exercise = ({rid}) => {
         queryFn:  () =>
         makeRequest.get("/exercises?rid= " + rid)
             .then((res) => {
-                return res.data
+                return Array.isArray(res.data) ? res.data : [];
         })
     });
 
