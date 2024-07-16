@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://vercel.com/yh13431s-projects/workout-tracker-backend", "https://workout-tracker-backend-yh13431s-projects.vercel.app/", "https://workout-tracker-backend-git-main-yh13431s-projects.vercel.app/"],
+    origin: ["http://localhost:3000"],
     credentials: true
   })
 )
