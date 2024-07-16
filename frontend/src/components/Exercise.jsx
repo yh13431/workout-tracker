@@ -13,7 +13,7 @@ const Exercise = ({rid}) => {
     const queryClient = useQueryClient()
 
     const makeRequest = axios.create({
-        baseURL: "https://workout-tracker-backend-yh13431s-projects.vercel.app/api",
+        baseURL: "http://localhost:3001/api",
         withCredentials: true,
     })
 
